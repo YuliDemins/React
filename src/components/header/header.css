@@ -1,0 +1,21 @@
+.header {
+  flex: 0 0 auto;
+  padding: 1rem;
+background: rgb(140, 140, 141);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list-link {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.active-link {
+  background: rgb(113, 113, 118);
+  cursor: default;
+}

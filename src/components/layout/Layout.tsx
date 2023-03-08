@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Header } from '../header/Header';
 
 class Layout extends Component {
   render() {
     return (
       <>
-      <header>
-      <NavLink to="/">                Home
-              </NavLink>
-              <NavLink to="about">
-                About as
-              </NavLink>
-      </header>
-        <main>
+        <Header />
+        <main className="container">
           <Outlet />
         </main>
         <footer>2023</footer>
