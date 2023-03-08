@@ -7,7 +7,7 @@
     "dev": "vite --open",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "fix": "eslint --fix . && prettier --write ."
+    "lint-fix": "npx eslint --ext js,jsx,ts,tsx ./src --fix"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.54.1",
@@ -16,14 +16,15 @@
     "eslint-config-prettier": "^8.7.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.4.1"
+    "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
