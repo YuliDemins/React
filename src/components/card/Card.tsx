@@ -1,25 +1,64 @@
 import React, { Component } from 'react';
+import { SVGComponent } from '../svgComponent/svgComponent';
 
 import './card.css';
 
-class Card extends Component {
+export interface CardProps {
+  id: number;
+  url: string;
+  title: string;
+  author: string;
+  likes: number;
+  show: number;
+}
+
+export interface CardState {
+  isLike: boolean;
+}
+
+class Card extends Component<CardProps, CardState> {
+  id: number;
+  url: string;
+  title: string;
+  author: string;
+  likes: number;
+  show: number;
+  constructor(props: CardProps) {
+    super(props);
+    this.id = props.id;
+    this.url = props.url;
+    this.title = props.title;
+    this.author = props.author;
+    this.likes = props.likes;
+    this.show = props.show;
+  }
+
+  // handlerClickLike = () => {
+  //   console.log('like' + this.id)
+
+  // }
+
   render() {
     return (
       <div className="card">
-        <div className="image"></div>
+        <div className="image">
+          <img src={this.url} alt={this.id.toString()} />
+        </div>
         <div className="info">
           <div className="wrapper-name">
-            <div className="title">Title</div>
-            <div className="author">author</div>
+            <div className="title">{this.title}</div>
+            <div className="author">{this.author}</div>
           </div>
           <div className="wrapper-stats">
             <div className="likes">
-              <div className="favorite"></div>
-              <div>likes</div>
+              <div className="favorite">
+                <SVGComponent src="./src/assets/svg/favorite.svg" id={this.id} />
+              </div>
+              <span>{this.likes}</span>
             </div>
             <div className="show">
               <div className="vis"></div>
-              <div>show</div>
+              <div>{this.show}</div>
             </div>
           </div>
         </div>
@@ -28,3 +67,13 @@ class Card extends Component {
   }
 }
 export { Card };
+
+{
+  /* <img
+  src={import.meta.env.BASE_URL + '/assets/' + this.props.data.image} // "image": "images/Puffskein.jpg"
+  alt={this.props.data.title}
+  className="card__img"
+></img>
+при условии что в vite.config есть base: '/React2023Q1/react-components', // это местоположение всех файлов проекта
+картинки лежат в public/assets/images */
+}
