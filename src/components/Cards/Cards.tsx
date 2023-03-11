@@ -17,7 +17,6 @@ class Cards extends Component {
             author={el.author}
             likes={el.likes}
             show={el.show}
-            url={''}
           />
         ))}
       </div>

@@ -1,9 +1,13 @@
 import { CardProps } from './components/card/Card';
 
+import img1 from '/src/assets/img/1.webp';
+import img2 from './src/assets/img/2.webp';
+import img3 from 'src/assets/img/3.webp';
+
 export const dataCards: CardProps[] = [
   {
     id: 1,
-    src: './src/assets/img/1.webp',
+    src: img1,
     title: 'maqi LAVA COOKIES',
     author: 'ka Lok Hong',
     likes: 199,
@@ -11,7 +15,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 2,
-    src: './src/assets/img/2.webp',
+    src: img2,
     title: 'Collection 2020',
     author: 'SATISH GANGAIAH',
     likes: 380,
@@ -19,7 +23,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 3,
-    src: './src/assets/img/3.webp',
+    src: img3,
     title: "'Trobada' Wall, Cantonigròs (Catalonia)",
     author: 'Reskate Studio',
     likes: 102,
