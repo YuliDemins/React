@@ -5,7 +5,7 @@ import './card.css';
 
 export interface CardProps {
   id: number;
-  url: string;
+  src: string;
   title: string;
   author: string;
   likes: number;
@@ -18,7 +18,7 @@ export interface CardState {
 
 class Card extends Component<CardProps, CardState> {
   id: number;
-  url: string;
+  src: string;
   title: string;
   author: string;
   likes: number;
@@ -26,7 +26,7 @@ class Card extends Component<CardProps, CardState> {
   constructor(props: CardProps) {
     super(props);
     this.id = props.id;
-    this.url = props.url;
+    this.src = props.src;
     this.title = props.title;
     this.author = props.author;
     this.likes = props.likes;
@@ -42,7 +42,7 @@ class Card extends Component<CardProps, CardState> {
     return (
       <div className="card">
         <div className="image">
-          <img src={this.url} alt={this.id.toString()} />
+          <img src={this.src} alt={this.id.toString()} />
         </div>
         <div className="info">
           <div className="wrapper-name">

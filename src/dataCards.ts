@@ -3,7 +3,7 @@ import { CardProps } from './components/card/Card';
 export const dataCards: CardProps[] = [
   {
     id: 1,
-    url: './src/assets/img/1.webp',
+    src: './src/assets/img/1.webp',
     title: 'maqi LAVA COOKIES',
     author: 'ka Lok Hong',
     likes: 199,
@@ -11,7 +11,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 2,
-    url: './src/assets/img/2.webp',
+    src: './src/assets/img/2.webp',
     title: 'Collection 2020',
     author: 'SATISH GANGAIAH',
     likes: 380,
@@ -19,7 +19,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 3,
-    url: './src/assets/img/3.webp',
+    src: './src/assets/img/3.webp',
     title: "'Trobada' Wall, Cantonigròs (Catalonia)",
     author: 'Reskate Studio',
     likes: 102,
@@ -27,7 +27,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 4,
-    url: './src/assets/img/4.webp',
+    src: './src/assets/img/4.webp',
     title: 'Anton Muhin PH & Sasha',
     author: 'anga make up',
     likes: 38,
@@ -35,7 +35,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 5,
-    url: './src/assets/img/5.webp',
+    src: './src/assets/img/5.webp',
     title: 'KLM - Up For It',
     author: 'Woodwork Amsterdam',
     likes: 538,
@@ -43,7 +43,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 6,
-    url: './src/assets/img/6.webp',
+    src: './src/assets/img/6.webp',
     title: 'Voice recorder',
     author: 'Layo Studio',
     likes: 739,
@@ -51,7 +51,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 7,
-    url: './src/assets/img/7.webp',
+    src: './src/assets/img/7.webp',
     title: 'Collection Character vol1',
     author: 'Yossef Salama',
     likes: 223,
@@ -59,7 +59,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 8,
-    url: './src/assets/img/8.webp',
+    src: './src/assets/img/8.webp',
     title: 'A Night At The Opera for Tatler UK',
     author: 'Velweiss Retouch',
     likes: 74,
@@ -67,7 +67,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 9,
-    url: './src/assets/img/9.webp',
+    src: './src/assets/img/9.webp',
     title: 'The Face Art Academy',
     author: 'Egle Ruibyte',
     likes: 478,
@@ -75,7 +75,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 10,
-    url: './src/assets/img/10.webp',
+    src: './src/assets/img/10.webp',
     title: 'Winds of Change',
     author: 'Allan Peters',
     likes: 387,
@@ -83,7 +83,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 11,
-    url: './src/assets/img/11.webp',
+    src: './src/assets/img/11.webp',
     title: 'Jaime Hayde Artbook',
     author: 'Jaime Hayde',
     likes: 337,
@@ -91,7 +91,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 12,
-    url: './src/assets/img/12.webp',
+    src: './src/assets/img/12.webp',
     title: 'Porsche at Night',
     author: 'GF Williams',
     likes: 160,
@@ -99,7 +99,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 13,
-    url: './src/assets/img/13.webp',
+    src: './src/assets/img/13.webp',
     title: 'Niwaki Catalogue',
     author: 'Sophie Chatellier',
     likes: 168,
@@ -107,7 +107,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 14,
-    url: './src/assets/img/14.webp',
+    src: './src/assets/img/14.webp',
     title: 'TYPE 0.7',
     author: 'Huston Wilson',
     likes: 484,
@@ -115,7 +115,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 15,
-    url: './src/assets/img/15.webp',
+    src: './src/assets/img/15.webp',
     title: 'Festival Packaging for WAGAS',
     author: 'Inkee Wang',
     likes: 730,
@@ -123,7 +123,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 16,
-    url: './src/assets/img/16.webp',
+    src: './src/assets/img/16.webp',
     title: 'MAMA',
     author: 'FAENA Studio',
     likes: 425,
@@ -131,7 +131,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 17,
-    url: './src/assets/img/17.webp',
+    src: './src/assets/img/17.webp',
     title: 'XKR_002 | Protect',
     author: 'XK stydio',
     likes: 542,
@@ -139,7 +139,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 18,
-    url: './src/assets/img/18.webp',
+    src: './src/assets/img/18.webp',
     title: 'Mooah #003',
     author: 'Hanee O',
     likes: 135,
@@ -147,7 +147,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 19,
-    url: './src/assets/img/19.webp',
+    src: './src/assets/img/19.webp',
     title: 'peep coffee',
     author: 'Hui Tong',
     likes: 5400,
@@ -155,7 +155,7 @@ export const dataCards: CardProps[] = [
   },
   {
     id: 20,
-    url: './src/assets/img/20.webp',
+    src: './src/assets/img/20.webp',
     title: 'The cozy purrs',
     author: 'Đốm Đốm',
     likes: 5400,

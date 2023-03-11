@@ -2,10 +2,10 @@ import React, { ChangeEvent, Component } from 'react';
 
 import './search.css';
 
-interface SearchProps {}
-interface SearchState {
+type SearchProps = {};
+type SearchState = {
   value: string;
-}
+};
 
 class Search extends Component<SearchProps, SearchState> {
   constructor(props: SearchProps) {
@@ -34,7 +34,7 @@ class Search extends Component<SearchProps, SearchState> {
         value: event.target.value,
       });
     }
-    localStorage.setItem('search', JSON.stringify(this.state))
+    // localStorage.setItem('search', JSON.stringify(this.state));
   };
 
   handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -47,9 +47,15 @@ class Search extends Component<SearchProps, SearchState> {
   render() {
     return (
       <div className="form">
-        <label htmlFor="">
+        <label htmlFor="search">
           <span className="material-symbols-outlined">search</span>
-          <input type="text" placeholder="" onChange={this.handleChange} value={this.state.value} />
+          <input
+            type="text"
+            placeholder=""
+            id="search"
+            onChange={this.handleChange}
+            value={this.state.value}
+          />
         </label>
         <button onClick={this.handleClick}>Search</button>
       </div>

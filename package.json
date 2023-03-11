@@ -7,11 +7,27 @@
     "dev": "vite --open",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint-fix": "npx eslint --ext js,jsx,ts,tsx ./src --fix"
+    "lint-fix": "npx eslint --ext js,jsx,ts,tsx ./src --fix",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage"
   },
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.2"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^9.0.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.4.0",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/coverage-c8": "^0.29.2",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -19,19 +35,18 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^5.0.0",
     "husky": "^7.0.4",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-localstorage-mock": "^3.0.0",
+    "jsdom": "^21.1.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.8.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.2"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react": "^3.1.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "react-scripts": "^5.0.1",
     "typescript": "^4.9.3",
-    "vite": "^4.1.0"
+    "vite": "^4.1.0",
+    "vite-plugin-checker": "^0.5.6",
+    "vitest": "^0.29.2"
   }
 }
