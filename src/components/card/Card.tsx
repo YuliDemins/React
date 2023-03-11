@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { SVGComponent } from '../svgComponent/svgComponent';
 
 import './card.css';
+import like from "/src/assets/svg/favorite.svg"
 
 export interface CardProps {
   id: number;
@@ -52,7 +53,7 @@ class Card extends Component<CardProps, CardState> {
           <div className="wrapper-stats">
             <div className="likes">
               <div className="favorite">
-                <SVGComponent src="./src/assets/svg/favorite.svg" id={this.id} />
+                <SVGComponent src={like} id={this.id} />
               </div>
               <span>{this.likes}</span>
             </div>
