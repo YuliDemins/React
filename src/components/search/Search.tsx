@@ -42,6 +42,7 @@ class Search extends Component<SearchProps, SearchState> {
     this.setState({
       value: this.state.value,
     });
+    localStorage.setItem('search', JSON.stringify(this.state));
   };
 
   render() {
