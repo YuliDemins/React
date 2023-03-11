@@ -11,21 +11,14 @@ class Search extends Component<SearchProps, SearchState> {
   constructor(props: SearchProps) {
     super(props);
 
+    const LsSearch = localStorage.getItem('search');
     this.state = {
-      value: '',
+      value: LsSearch ? JSON.parse(LsSearch) : ''
     };
   }
 
   componentWillUnmount() {
-    localStorage.setItem('search', JSON.stringify(this.state));
-  }
-
-  componentDidMount() {
-    const objValue = localStorage.getItem('search');
-
-    if (objValue) {
-      this.setState(JSON.parse(objValue));
-    }
+    localStorage.setItem('search', JSON.stringify(this.state.value));
   }
 
   handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +27,6 @@ class Search extends Component<SearchProps, SearchState> {
         value: event.target.value,
       });
     }
-    // localStorage.setItem('search', JSON.stringify(this.state));
   };
 
   handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,7 +34,7 @@ class Search extends Component<SearchProps, SearchState> {
     this.setState({
       value: this.state.value,
     });
-    localStorage.setItem('search', JSON.stringify(this.state));
+    localStorage.setItem('search', JSON.stringify(this.state.value));
   };
 
   render() {
