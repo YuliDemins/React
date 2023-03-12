@@ -7,6 +7,7 @@ background: rgb(140, 140, 141);
 .nav-list {
   display: flex;
   justify-content: center;
+
 }
 
 .nav-list-link {

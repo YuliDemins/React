@@ -11,7 +11,9 @@ interface SVGState {
 
 class SVGComponent extends Component<SVGProp, SVGState> {
   src: string;
+
   id: number;
+
   constructor(props: SVGProp) {
     super(props);
     this.state = {

@@ -1,10 +1,10 @@
-import { Header } from './components/header/Header';
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { describe, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect';
-import { MemoryRouter, Routes, Route} from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
+import { Header } from './components/header/Header';
 import { Cards } from './components/Cards/Cards';
 import { Card } from './components/card/Card';
 import { Home } from './pages/home/Home';
@@ -25,15 +25,7 @@ describe('App', () => {
     const likes = 0;
     const show = 0;
     render(
-      <Card
-        key={id}
-        id={id}
-        src={src}
-        title={title}
-        author={author}
-        likes={likes}
-        show={show}
-      />
+      <Card key={id} id={id} src={src} title={title} author={author} likes={likes} show={show} />
     );
     expect(screen.getByText(/title/i)).toBeInTheDocument();
     expect(screen.getByText(/author/i)).toBeInTheDocument();
@@ -85,8 +77,9 @@ describe('App', () => {
 
   it('renders Search', () => {
     render(<Search />);
-    expect(screen.getByRole('textbox')).toBeInTheDocument();
-    expect(screen.getByLabelText('search')).toBeInTheDocument();
+    const input = screen.getByRole('textbox');
+    const button = screen.getByLabelText('search');
+    expect(input).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
   });
-
 });

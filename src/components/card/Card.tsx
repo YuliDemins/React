@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { SVGComponent } from '../svgComponent/svgComponent';
 
 import './card.css';
-import like from "/src/assets/svg/favorite.svg"
+import like from '/src/assets/svg/favorite.svg';
 
 export interface CardProps {
   id: number;
@@ -19,11 +19,17 @@ export interface CardState {
 
 class Card extends Component<CardProps, CardState> {
   id: number;
+
   src: string;
+
   title: string;
+
   author: string;
+
   likes: number;
+
   show: number;
+
   constructor(props: CardProps) {
     super(props);
     this.id = props.id;
@@ -58,7 +64,7 @@ class Card extends Component<CardProps, CardState> {
               <span>{this.likes}</span>
             </div>
             <div className="show">
-              <div className="vis"></div>
+              <div className="vis" />
               <div>{this.show}</div>
             </div>
           </div>

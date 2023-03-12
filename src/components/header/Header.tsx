@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.css';
 
-const setActive = ({ isActive }: { isActive: boolean }) =>
-  isActive ? 'nav-list-link active-link' : 'nav-list-link';
+const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? 'nav-list-link active-link' : 'nav-list-link');
 
 class Header extends Component {
   render() {

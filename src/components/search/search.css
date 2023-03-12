@@ -9,7 +9,7 @@ label{
   position: relative;
   width: 500px;
   max-width: 500px;
-  margin-right: 0.3rem;
+  margin-right: 0.5rem;
   
 }
 
@@ -46,12 +46,14 @@ input {
 }
 
 button {
-  color: rgb(21,21,40);
+  color: rgb(109, 109, 122);
   background: rgb(252, 252, 252);
   border-radius: 0px 8px 8px 0px;
   border: 1px solid rgba(179, 179, 181, 0.35);
   padding: 10px 30px;
   cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
 .material-symbols-outlined {
