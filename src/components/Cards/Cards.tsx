@@ -9,15 +9,7 @@ class Cards extends Component {
     return (
       <div className="cards" data-testid="сards">
         {dataCards.map((el) => (
-          <Card
-            key={el.id}
-            id={el.id}
-            src={el.src}
-            title={el.title}
-            author={el.author}
-            likes={el.likes}
-            show={el.show}
-          />
+          <Card key={el.id} {...el} />
         ))}
       </div>
     );

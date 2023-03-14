@@ -40,11 +40,6 @@ class Card extends Component<CardProps, CardState> {
     this.show = props.show;
   }
 
-  // handlerClickLike = () => {
-  //   console.log('like' + this.id)
-
-  // }
-
   render() {
     return (
       <div className="card">
@@ -74,13 +69,3 @@ class Card extends Component<CardProps, CardState> {
   }
 }
 export { Card };
-
-{
-  /* <img
-  src={import.meta.env.BASE_URL + '/assets/' + this.props.data.image} // "image": "images/Puffskein.jpg"
-  alt={this.props.data.title}
-  className="card__img"
-></img>
-при условии что в vite.config есть base: '/React2023Q1/react-components', // это местоположение всех файлов проекта
-картинки лежат в public/assets/images */
-}

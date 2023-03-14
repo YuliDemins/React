@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { Component, ReactNode } from 'react';
 import { Header } from '../header/Header';
 
-class Layout extends Component {
+type LayoutProp = {
+  title: string;
+  content: ReactNode;
+};
+class Layout extends Component<LayoutProp> {
   render() {
     return (
       <>
-        <Header />
-        <main className="container">
-          <Outlet />
-        </main>
+        {<Header title={this.props.title} />}
+        <main className="container">{this.props.content}</main>
         <footer>2023</footer>
       </>
     );

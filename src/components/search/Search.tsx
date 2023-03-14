@@ -2,15 +2,15 @@ import React, { ChangeEvent, Component } from 'react';
 
 import './search.css';
 
-// type SearchProps = {};
+type SearchProps = Record<string, never>;
 
 type SearchState = {
   value: string;
 };
 
-class Search extends Component<Record<string, never>, SearchState> {
-  constructor({}) {
-    super({});
+class Search extends Component<SearchProps, SearchState> {
+  constructor(props: SearchProps) {
+    super(props);
     const LsSearch = localStorage.getItem('search');
     this.state = {
       value: LsSearch ? JSON.parse(LsSearch) : '',

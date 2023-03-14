@@ -27,10 +27,6 @@ input {
   padding-left: 45px;
 }
 
-/* input::placeholder {
-  font-size: 22px;
-} */
-
 .image-search {
   position: absolute;
   top: 0;

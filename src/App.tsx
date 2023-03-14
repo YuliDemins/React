@@ -11,11 +11,11 @@ class App extends Component {
   render() {
     return (
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
+        <Route index element={<Layout title="Home" content={<Home />} />} />
+        <Route path="/" element={<Layout title="Home" content={<Home />} />} />
+        <Route path="/index.html" element={<Layout title="Home" content={<Home />} />} />
+        <Route path="about" element={<Layout title="About" content={<About />} />} />
+        <Route path="*" element={<Layout title="404" content={<NotFound />} />} />
       </Routes>
     );
   }

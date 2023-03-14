@@ -33,7 +33,7 @@ describe('App', () => {
   it('Header test', () => {
     render(
       <MemoryRouter>
-        <Header />
+        <Header title={''} />
       </MemoryRouter>
     );
     const homeLink = screen.getByText(/home/i);

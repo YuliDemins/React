@@ -26,7 +26,6 @@ class SVGComponent extends Component<SVGProp, SVGState> {
   }
 
   handleClick = () => {
-    // const сolor = '#fd171f';
     this.setState({ fillColor: '#fd171f', isFill: true });
   };
 
