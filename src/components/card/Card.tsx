@@ -18,49 +18,28 @@ export interface CardState {
 }
 
 class Card extends Component<CardProps, CardState> {
-  id: number;
-
-  src: string;
-
-  title: string;
-
-  author: string;
-
-  likes: number;
-
-  show: number;
-
-  constructor(props: CardProps) {
-    super(props);
-    this.id = props.id;
-    this.src = props.src;
-    this.title = props.title;
-    this.author = props.author;
-    this.likes = props.likes;
-    this.show = props.show;
-  }
-
   render() {
+    const { id, src, title, author, likes, show } = this.props;
     return (
       <div className="card">
         <div className="image">
-          <img src={this.src} alt={this.id.toString()} />
+          <img src={src} alt={id.toString()} />
         </div>
         <div className="info">
           <div className="wrapper-name">
-            <div className="title">{this.title}</div>
-            <div className="author">{this.author}</div>
+            <div className="title">{title}</div>
+            <div className="author">{author}</div>
           </div>
           <div className="wrapper-stats">
             <div className="likes">
               <div className="favorite">
-                <SVGComponent src={like} id={this.id} />
+                <SVGComponent src={like} id={id} />
               </div>
-              <span>{this.likes}</span>
+              <span>{likes}</span>
             </div>
             <div className="show">
               <div className="vis" />
-              <div>{this.show}</div>
+              <div>{show}</div>
             </div>
           </div>
         </div>

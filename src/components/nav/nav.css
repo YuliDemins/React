@@ -1,0 +1,15 @@
+.nav-list {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list-link {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.active-link {
+  background: rgb(113, 113, 118);
+  cursor: default;
+}

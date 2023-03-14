@@ -7,10 +7,11 @@ type LayoutProp = {
 };
 class Layout extends Component<LayoutProp> {
   render() {
+    const { title, content } = this.props;
     return (
       <>
-        {<Header title={this.props.title} />}
-        <main className="container">{this.props.content}</main>
+        <Header title={title} />
+        <main className="container">{content}</main>
         <footer>2023</footer>
       </>
     );
