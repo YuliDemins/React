@@ -1,15 +1,19 @@
-.nav-list {
+.list {
   display: flex;
   justify-content: center;
+  padding: 1rem;
 }
 
-.nav-list-link {
+.link {
   color: white;
   text-decoration: none;
   padding: 1rem;
 }
 
-.active-link {
+.active {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
   background: rgb(113, 113, 118);
   cursor: default;
 }

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './nav.css';
+import styles from './nav.module.css';
 
 type Links = {
   id: number;
@@ -22,17 +22,16 @@ const links: Links[] = [
   },
 ];
 
-const setActive = ({ isActive }: { isActive: boolean }) =>
-  isActive ? 'nav-list-link active-link' : 'nav-list-link';
+const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? styles.active : styles.link);
 
 class Nav extends Component {
   render() {
     return (
-      <nav className="nav">
-        <ul className="nav-list">
+      <nav className={styles.nav}>
+        <ul className={styles.list}>
           {links.map(({ route, text, id }) => {
             return (
-              <li key={id} className="nav-list-item">
+              <li key={id}>
                 <NavLink to={route} className={setActive}>
                   {text}
                 </NavLink>

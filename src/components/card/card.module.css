@@ -31,7 +31,7 @@
   height: 100%;
 }
 
-.wrapper-name {
+.wrapper{
   flex: 1 0 auto;
   margin-bottom: 0.7rem;
 }
@@ -45,7 +45,7 @@ text-transform: uppercase;
   font-size: 14px;
 }
 
-.wrapper-stats {
+.stats {
   display: flex;
   color: black;
   font-size: 14px;

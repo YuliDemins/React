@@ -11,7 +11,7 @@ import { Home } from './pages/home/Home';
 import { About } from './pages/about/About';
 import { Search } from './components/search/Search';
 import { NotFound } from './pages/notFound/NotFound';
-import { Title } from './components/header/Title';
+import { Title } from './components/title/Title';
 
 describe('App', () => {
   it('renders cards', () => {

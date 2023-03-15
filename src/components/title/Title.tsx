@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import styles from './title.module.css';
+
 type TitleProp = {
   title: string;
 };
@@ -7,7 +9,7 @@ type TitleProp = {
 class Title extends Component<TitleProp> {
   render() {
     const { title } = this.props;
-    return <div className="header-title">{title}</div>;
+    return <div className={styles.title}>{title}</div>;
   }
 }
 

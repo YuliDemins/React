@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Nav } from '../nav/nav';
-import './header.css';
-// import { Title } from './Title';
+import styles from './header.module.css';
 
 type HeaderProps = {
   headerTitle: JSX.Element;
@@ -10,7 +9,7 @@ class Header extends Component<HeaderProps> {
   render() {
     const { headerTitle } = this.props;
     return (
-      <header className="header">
+      <header className={styles.header}>
         {headerTitle}
         <Nav />
       </header>

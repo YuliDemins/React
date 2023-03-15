@@ -2,11 +2,5 @@
   display: flex;
   justify-content: space-around;
   flex: 0 0 auto;
-  padding: 1rem;
   background: rgb(140, 140, 141);
-}
-
-.header-title {
-  font-weight: 800;
-  text-transform: uppercase;
 }
