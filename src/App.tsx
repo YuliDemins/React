@@ -10,8 +10,8 @@ import { Layout } from './components/layout/Layout';
 
 type RoutesType = {
   id: number;
-  path: '/' | '/about' | '/*';
-  title: string;
+  path: '/' | 'about' | '*';
+  title: 'Home' | 'About' | '404';
   content: JSX.Element;
 };
 
@@ -24,13 +24,13 @@ const routes: RoutesType[] = [
   },
   {
     id: 2,
-    path: '/about',
+    path: 'about',
     title: 'About',
     content: <About />,
   },
   {
     id: 3,
-    path: '/*',
+    path: '*',
     title: '404',
     content: <NotFound />,
   },

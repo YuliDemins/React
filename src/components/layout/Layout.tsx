@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { Header } from '../header/Header';
+import { Title } from '../header/Title';
 
 type LayoutProp = {
   title: string;
@@ -10,7 +11,7 @@ class Layout extends Component<LayoutProp> {
     const { title, content } = this.props;
     return (
       <>
-        <Header title={title} />
+        <Header headerTitle={<Title title={title} />} />
         <main className="container">{content}</main>
         <footer>2023</footer>
       </>

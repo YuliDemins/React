@@ -11,6 +11,7 @@ import { Home } from './pages/home/Home';
 import { About } from './pages/about/About';
 import { Search } from './components/search/Search';
 import { NotFound } from './pages/notFound/NotFound';
+import { Title } from './components/header/Title';
 
 describe('App', () => {
   it('renders cards', () => {
@@ -33,7 +34,7 @@ describe('App', () => {
   it('Header test', () => {
     render(
       <MemoryRouter>
-        <Header title={''} />
+        <Header headerTitle={<Title title="" />} />
       </MemoryRouter>
     );
     const homeLink = screen.getByText(/home/i);

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Nav } from '../nav/nav';
 import './header.css';
+// import { Title } from './Title';
 
-type HeaderProp = {
-  title: string;
+type HeaderProps = {
+  headerTitle: JSX.Element;
 };
-class Header extends Component<HeaderProp> {
+class Header extends Component<HeaderProps> {
   render() {
-    const { title } = this.props;
+    const { headerTitle } = this.props;
     return (
       <header className="header">
-        <div className="header-title">{title}</div>
+        {headerTitle}
         <Nav />
       </header>
     );
@@ -18,3 +19,9 @@ class Header extends Component<HeaderProp> {
 }
 
 export { Header };
+
+// class HeaderTitle extends Component {
+//   render (){
+
+//   }
+// }
