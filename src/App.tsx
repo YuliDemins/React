@@ -7,11 +7,12 @@ import { Home } from './pages/home/Home';
 import { NotFound } from './pages/notFound/NotFound';
 
 import { Layout } from './components/layout/Layout';
+import { Form } from './pages/form/Form';
 
 type RoutesType = {
   id: number;
-  path: '/' | 'about' | '*';
-  title: 'Home' | 'About' | '404';
+  path: '/' | 'about' | 'form' | '*';
+  title: 'Home' | 'About' | 'Form' | '404';
   content: JSX.Element;
 };
 
@@ -30,6 +31,12 @@ const routes: RoutesType[] = [
   },
   {
     id: 3,
+    path: 'form',
+    title: 'Form',
+    content: <Form />,
+  },
+  {
+    id: 4,
     path: '*',
     title: '404',
     content: <NotFound />,

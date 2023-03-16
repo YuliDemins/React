@@ -18,9 +18,3 @@ class Header extends Component<HeaderProps> {
 }
 
 export { Header };
-
-// class HeaderTitle extends Component {
-//   render (){
-
-//   }
-// }

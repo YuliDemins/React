@@ -1,0 +1,16 @@
+.form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 30rem;
+  border-radius: 8px 0px 0px 8px;
+  border: 1px solid rgba(179, 179, 181, 0.35);
+  background: rgb(252, 252, 252);
+  color: rgb(21, 21, 40);
+}
+
+.formlabel {
+padding: 0.5rem;
+}
