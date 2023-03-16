@@ -1,11 +1,15 @@
 import { Component } from 'react';
-import { FormValue } from '../../formValue/FormValue';
+// import { FormValue } from '../../formValue/FormValue';
 
 import './valueList.css';
 
-class ValueList extends Component {
+type ListProps = {
+  children: JSX.Element | JSX.Element[] | null;
+};
+
+class ValueList extends Component<ListProps> {
   render() {
-    return <div className="valuelist">{<FormValue />}</div>;
+    return <ul className="valuelist">{this.props.children}</ul>;
   }
 }
 
