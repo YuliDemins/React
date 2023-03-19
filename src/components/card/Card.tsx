@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { SVGComponent } from '../svgComponent/svgComponent';
 
 import styles from './card.module.css';

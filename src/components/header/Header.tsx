@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Nav } from '../nav/nav';
 import styles from './header.module.css';
 
@@ -18,9 +18,3 @@ class Header extends Component<HeaderProps> {
 }
 
 export { Header };
-
-// class HeaderTitle extends Component {
-//   render (){
-
-//   }
-// }
