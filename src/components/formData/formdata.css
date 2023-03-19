@@ -5,12 +5,94 @@
   justify-content: center;
   margin: 0 auto;
   width: 30rem;
-  border-radius: 8px 0px 0px 8px;
-  border: 1px solid rgba(179, 179, 181, 0.35);
+  border-radius: 8px;
+  border: 1px solid rgba(179, 179, 181, 0.4);
   background: rgb(252, 252, 252);
   color: rgb(21, 21, 40);
 }
 
 .formlabel {
-padding: 0.5rem;
+padding: 0.5rem 0;
+}
+
+.valid {
+  display: flex;
+  width: 100%;
+  height: 2rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(179, 179, 181, 0.4);
+}
+.invalid {
+  display: flex;
+  width: 100%;
+  height: 2rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(179, 179, 181, 0.4);
+  /* border:1px solid red; */
+}
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+
+
+.switcher {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  overflow: hidden;
+  background-color: #ddd;
+  position: relative;
+}
+
+.switcher label {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #777;
+  transition: all 0.3s ease;
+  border-radius: 40px;
+}
+
+.switcher input[type="radio"] {
+  display: none;
+}
+
+.switcher input[type="radio"]:checked + label {
+  color: #000;
+  font-weight: bold;
+}
+
+.switcher input[type="radio"]:first-of-type:checked + label {
+  transform: translateX(0%);
+}
+
+.switcher input[type="radio"]:last-of-type:checked + label {
+  transform: translateX(100%);
+}
+
+.switcher label:hover {
+  cursor: pointer;
+}
+
+
+.submit {
+  width: 19rem;
+  height: 2rem;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: green;
+}
+
+.disable {
+  width: 19rem;
+  height: 2rem;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: gray;
 }
