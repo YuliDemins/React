@@ -9,5 +9,14 @@
 }
 
 .valueitem {
-  padding: 0.5rem;
+  padding: 0.2rem;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  aspect-ratio: 1.5/1;
+  border-radius: 4px 4px 0px 0px;
 }

@@ -3,182 +3,197 @@ import { Component } from 'react';
 import { FormValue } from '../formValue/FormValue';
 
 import './formdata.css';
-import { ValueList } from './valueList/ValueList';
+import { ValueList } from '../valueList/ValueList';
+import { Modal } from '../modal/Modal';
+
+const ErrorName = {
+  name: 'The first letter must be capitalized',
+  country: 'Choose the country',
+  birthday: 'Choose the date',
+  image: 'Choose the file',
+  gender: 'Choose the gender',
+  agree: 'must be chosen',
+};
+
+interface Errors {
+  [name: string]: string;
+}
 
 type DataProps = Record<string, never>;
 type DataState = {
-  nameValue: string;
-  emailValue: string;
-  passValue: string;
-  birthdayValue: string;
-  isNameValid: boolean;
-  isEmailValid: boolean;
-  isPasswordValid: boolean;
   isFormValid: boolean;
+  errors: Errors;
   components: JSX.Element[];
 };
 class FormData extends Component<DataProps, DataState> {
-  inputRef: React.RefObject<HTMLInputElement>;
   nameRef: React.RefObject<HTMLInputElement>;
-  emailRef: React.RefObject<HTMLInputElement>;
-  passwordRef: React.RefObject<HTMLInputElement>;
-
+  maleRef: React.RefObject<HTMLInputElement>;
+  femaleRef: React.RefObject<HTMLInputElement>;
+  countryRef: React.RefObject<HTMLSelectElement>;
+  fileRef: React.RefObject<HTMLInputElement>;
+  birthRef: React.RefObject<HTMLInputElement>;
+  agreeRef: React.RefObject<HTMLInputElement>;
   constructor(props: DataProps) {
     super(props);
-    this.inputRef = createRef();
-    this.nameRef = React.createRef();
-    this.emailRef = React.createRef();
-    this.passwordRef = React.createRef();
-
+    this.nameRef = createRef();
+    this.maleRef = createRef();
+    this.femaleRef = createRef();
+    this.countryRef = createRef();
+    this.fileRef = createRef();
+    this.birthRef = createRef();
+    this.agreeRef = createRef();
     this.state = {
-      nameValue: '',
-      emailValue: '',
-      passValue: '',
-      birthdayValue: '',
-      isNameValid: false,
-      isEmailValid: false,
-      isPasswordValid: false,
       isFormValid: false,
+      errors: {},
       components: [],
     };
   }
 
-  handleNameChange = () => {
-    if (this.nameRef.current) {
-      const name = this.nameRef.current.value;
-      const isNameValid = name.length > 0;
-      this.setState({ nameValue: name, isNameValid }, this.validateForm);
-    }
-  };
-
-  handleEmailChange = () => {
-    if (this.emailRef.current) {
-      const email = this.emailRef.current.value;
-      const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      this.setState({ emailValue: email, isEmailValid }, this.validateForm);
-    }
-  };
-
-  handlePasswordChange = () => {
-    if (this.passwordRef.current) {
-      const password = this.passwordRef.current.value;
-      const isPasswordValid = password.length >= 6;
-      // const isPasswordValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password);
-      this.setState({ passValue: password, isPasswordValid }, this.validateForm);
-    }
-  };
-
-  validateForm() {
-    const { isNameValid, isEmailValid, isPasswordValid } = this.state;
-    const isFormValid = isNameValid && isEmailValid && isPasswordValid;
-    this.setState({ isFormValid });
-  }
-
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const { nameValue, emailValue, passValue, isFormValid, components } = this.state;
-
     event.preventDefault();
+    const errors: Errors = {};
+    if (
+      this.nameRef.current &&
+      this.fileRef.current?.files &&
+      this.countryRef.current &&
+      this.birthRef.current &&
+      this.agreeRef.current &&
+      this.maleRef.current &&
+      this.femaleRef.current
+    ) {
+      if (!/^[А-ЯЁA-Z][а-яёa-z]+$/.test(this.nameRef.current.value.trim())) {
+        errors.name = ErrorName.name;
+      }
+      if (!this.countryRef.current.value) {
+        errors.country = ErrorName.country;
+      }
+      if (!this.birthRef.current.value) {
+        errors.birthday = ErrorName.birthday;
+      }
+      if (!this.fileRef.current.files[0]) {
+        errors.image = ErrorName.image;
+      }
+      if (!this.maleRef.current.checked && !this.femaleRef.current.checked) {
+        errors.gender = ErrorName.gender;
+      }
+      if (!this.agreeRef.current.checked) {
+        errors.agree = ErrorName.agree;
+      }
 
-    if (isFormValid) {
-      this.setState({
-        components: [
-          ...components,
-          <FormValue key={components.length} value={{ nameValue, emailValue, passValue }} />,
-        ],
-      });
+      this.setState({ errors });
+
+      if (Object.keys(errors).length === 0) {
+        this.setState({
+          isFormValid: true,
+        });
+        setTimeout(() => {
+          this.setState({ isFormValid: false });
+        }, 2000);
+
+        this.setState({
+          components: [
+            ...this.state.components,
+            <FormValue
+              key={this.state.components.length}
+              values={{
+                imageValue: URL.createObjectURL(this.fileRef.current.files[0]),
+                nameValue: this.nameRef.current.value,
+                countryValue: this.countryRef.current.value,
+                birthdayValue: this.birthRef.current.value,
+                genderValue: this.maleRef.current.checked
+                  ? this.maleRef.current.value
+                  : this.femaleRef.current.value,
+                agree: this.agreeRef.current.checked,
+              }}
+            />,
+          ],
+        });
+
+        const form = event.target as HTMLFormElement;
+        form.reset();
+        this.setState({
+          errors: {},
+        });
+      }
     }
-
-    if (this.nameRef.current) this.nameRef.current.value = '';
-    if (this.emailRef.current) this.emailRef.current.value = '';
-    if (this.passwordRef.current) this.passwordRef.current.value = '';
-
-    this.setState({
-      nameValue: '',
-      emailValue: '',
-      passValue: '',
-      isNameValid: false,
-      isEmailValid: false,
-      isPasswordValid: false,
-      isFormValid: false,
-    });
   };
 
   render() {
-    const { isNameValid, isEmailValid, isPasswordValid, isFormValid, components } = this.state;
+    const { components } = this.state;
     return (
       <>
         <form className="form" onSubmit={this.handleSubmit}>
-          <label className="formlabel" htmlFor="name">
-            Name:
-            <input
-              id="name"
-              type="text"
-              ref={this.nameRef}
-              className={!isNameValid ? 'invalid' : 'valid'}
-              onChange={this.handleNameChange}
-            />
-            {!isNameValid && <span className="error">{'ошибка'}</span>}
-          </label>
-          <label className="formlabel" htmlFor="email">
-            email:
-            <input
-              id="email"
-              type="email"
-              ref={this.emailRef}
-              onChange={this.handleEmailChange}
-              className={!isEmailValid ? 'invalid' : 'valid'}
-            />
-            {!isEmailValid && <span className="error">{'ошибка'}</span>}
-          </label>
-          <label className="formlabel" htmlFor="pass">
-            password:
-            <input
-              id="pass"
-              type="password"
-              ref={this.passwordRef}
-              onChange={this.handlePasswordChange}
-              className={!isPasswordValid ? 'invalid' : 'valid'}
-            />
-            {!isPasswordValid && <span className="error">{'ошибка'}</span>}
-          </label>
-          <label className="formlabel" htmlFor="birthday">
-            birthday:
-            <input name="birthday" type="date" />
-          </label>
-          <label className="formlabel" htmlFor="name">
-            Agree:
-            <input name="fgree" type="checkbox" />
-          </label>
-          <div className="switcher">
-            <label htmlFor="gender">
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                // checked={gender === 'male'}
-                // onChange={(e) => setGender(e.target.value)}
-              />
-              Male
-            </label>
+          <div className="name">
             <label>
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                // checked={gender === 'female'}
-                // onChange={(e) => setGender(e.target.value)}
-              />
-              Female
+              Name:
+              <input type="text" ref={this.nameRef} className="input" placeholder="Name" />
+              {this.state.errors.name && <span className="error">{ErrorName.name}</span>}
             </label>
           </div>
-          <button
-            className={!isFormValid ? 'disable' : 'submit'}
-            type="submit"
-            disabled={!isFormValid}
-          >
+          <div className="country">
+            <label>
+              country:
+              <select className={'input'} ref={this.countryRef} defaultValue="">
+                <option value="" disabled>
+                  choose the country...
+                </option>
+                <option value="Russia">Russia</option>
+                <option value="Spain">Spain</option>
+                <option value="France">France</option>
+              </select>
+            </label>
+            {this.state.errors.country && <span className="error">{ErrorName.country}</span>}
+          </div>
+          <div className="birthday">
+            <label>
+              birthday:
+              <input className={'input'} id="birthday" type="date" ref={this.birthRef} />
+            </label>
+            {this.state.errors.birthday && <span className="error">{ErrorName.birthday}</span>}
+          </div>
+          <div className="file">
+            <label>
+              <input type="file" id="file" ref={this.fileRef} />
+            </label>
+            {this.state.errors.image && <div className="error">{ErrorName.image}</div>}
+          </div>
+          <div className="gender">
+            <div className="switcher">
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  className="switcher-input"
+                  ref={this.maleRef}
+                />
+                Male
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  className="switcher-input"
+                  ref={this.femaleRef}
+                />
+                Female
+              </label>
+            </div>
+            {this.state.errors.gender && <span className="error">{ErrorName.gender}</span>}
+          </div>
+          <div className="checkbox">
+            <label>
+              <input className="agree" type="checkbox" ref={this.agreeRef} />
+              agree
+            </label>
+            {this.state.errors.agree && <span className="error">{ErrorName.agree}</span>}
+          </div>
+          <button type="submit" className="submit">
             Submit
           </button>
         </form>
+        {this.state.isFormValid && <Modal />}
         <ValueList>
           {components
             ? components.map((component, index) => <li key={index}>{component}</li>)

@@ -1,5 +1,4 @@
 import { Component } from 'react';
-// import { FormValue } from '../../formValue/FormValue';
 
 import './valueList.css';
 

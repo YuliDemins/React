@@ -3,24 +3,25 @@ import { Component } from 'react';
 import './formvalue.css';
 
 type FormValueProp = {
-  value: { nameValue: string; emailValue: string; passValue: string };
+  values: {
+    imageValue: string;
+    nameValue: string;
+    countryValue: string;
+    birthdayValue: string;
+    genderValue: string;
+    agree: boolean;
+  };
 };
 class FormValue extends Component<FormValueProp> {
   render() {
     return (
       <div className="value">
-        <div className="valueitem">Name: {this.props.value.nameValue}</div>
-        <div className="valueitem">email: {this.props.value.emailValue}</div>
-        <div className="valueitem">password: {this.props.value.passValue}</div>
-        <div className="valueitem">
-          birthday: <span>01.01.1000</span>
-        </div>
-        <div className="valueitem">
-          Agree: <span>yes</span>
-        </div>
-        <div className="valueitem">
-          Sex: <span>female</span>
-        </div>
+        <img className="image" src={this.props.values.imageValue} alt="" />
+        <div className="valueitem">Name: {this.props.values.nameValue}</div>
+        <div className="valueitem">Country: {this.props.values.countryValue}</div>
+        <div className="valueitem">Birthday: {this.props.values.birthdayValue}</div>
+        <div className="valueitem">Gender: {this.props.values.genderValue}</div>
+        <div className="valueitem">Agree: {this.props.values.agree ? 'yes' : 'no'}</div>
       </div>
     );
   }
