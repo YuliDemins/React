@@ -14,14 +14,16 @@ type FormValueProp = {
 };
 class FormValue extends Component<FormValueProp> {
   render() {
+    const { imageValue, nameValue, countryValue, birthdayValue, genderValue, agree } =
+      this.props.values;
     return (
       <div className="value">
-        <img className="image" src={this.props.values.imageValue} alt="" />
-        <div className="valueitem">Name: {this.props.values.nameValue}</div>
-        <div className="valueitem">Country: {this.props.values.countryValue}</div>
-        <div className="valueitem">Birthday: {this.props.values.birthdayValue}</div>
-        <div className="valueitem">Gender: {this.props.values.genderValue}</div>
-        <div className="valueitem">Agree: {this.props.values.agree ? 'yes' : 'no'}</div>
+        <img className="image" src={imageValue} alt="" />
+        <div className="valueitem">Name: {nameValue}</div>
+        <div className="valueitem">Country: {countryValue}</div>
+        <div className="valueitem">Birthday: {birthdayValue}</div>
+        <div className="valueitem">Gender: {genderValue}</div>
+        <div className="valueitem">Agree: {agree ? 'yes' : 'no'}</div>
       </div>
     );
   }
