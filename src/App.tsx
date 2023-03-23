@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -8,43 +8,14 @@ import { NotFound } from './pages/notFound/NotFound';
 
 import { Layout } from './components/layout/Layout';
 
-type RoutesType = {
-  id: number;
-  path: '/' | 'about' | '*';
-  title: 'Home' | 'About' | '404';
-  content: JSX.Element;
-};
-
-const routes: RoutesType[] = [
-  {
-    id: 1,
-    path: '/',
-    title: 'Home',
-    content: <Home />,
-  },
-  {
-    id: 2,
-    path: 'about',
-    title: 'About',
-    content: <About />,
-  },
-  {
-    id: 3,
-    path: '*',
-    title: '404',
-    content: <NotFound />,
-  },
-];
 class App extends Component {
   render() {
     return (
       <Routes>
         <Route index element={<Layout title="Home" content={<Home />} />} />
-        {routes.map(({ id, path, title, content }) => {
-          return (
-            <Route key={id} path={path} element={<Layout title={title} content={content} />} />
-          );
-        })}
+        <Route key="1" path="/" element={<Layout title="Home" content={<Home />} />} />
+        <Route key="2" path="about" element={<Layout title="About" content={<About />} />} />
+        <Route key="3" path="*" element={<Layout title="404" content={<NotFound />} />} />
       </Routes>
     );
   }

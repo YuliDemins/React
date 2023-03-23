@@ -5,8 +5,8 @@ import styles from './nav.module.css';
 
 type Links = {
   id: number;
-  route: '/' | '/about';
-  text: 'Home' | 'About';
+  route: string;
+  text: string;
 };
 
 const links: Links[] = [
