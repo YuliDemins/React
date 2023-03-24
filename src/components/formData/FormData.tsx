@@ -7,10 +7,10 @@ import { ValueList } from '../valueList/ValueList';
 import { Modal } from '../modal/Modal';
 
 const ErrorName = {
-  name: 'The first letter must be capitalized',
+  name: 'The first letter must be capitalized and more 1 letter',
   country: 'Choose the country',
-  birthday: 'Choose the date',
-  image: 'Choose the file',
+  birthday: 'Choose the correct date',
+  image: 'Choose the file .png, .jpg or .webp',
   gender: 'Choose the gender',
   agree: 'must be chosen',
 };
@@ -67,10 +67,21 @@ class FormData extends Component<DataProps, DataState> {
       if (!this.countryRef.current.value) {
         errors.country = ErrorName.country;
       }
-      if (!this.birthRef.current.value) {
+      if (
+        !this.birthRef.current.value ||
+        new Date(this.birthRef.current.value).getTime() >
+          new Date().setDate(new Date().getDate() - 1)
+      ) {
         errors.birthday = ErrorName.birthday;
       }
-      if (!this.fileRef.current.files[0]) {
+      if (
+        !this.fileRef.current.files[0] ||
+        !(
+          this.fileRef.current.files[0].type === 'image/png' ||
+          this.fileRef.current.files[0].type === 'image/jpeg' ||
+          this.fileRef.current.files[0].type === 'image/webp'
+        )
+      ) {
         errors.image = ErrorName.image;
       }
       if (!this.maleRef.current.checked && !this.femaleRef.current.checked) {
@@ -147,13 +158,13 @@ class FormData extends Component<DataProps, DataState> {
           <div className="birthday">
             <label>
               birthday:
-              <input className={'input'} id="birthday" type="date" ref={this.birthRef} />
+              <input className={'input'} type="date" ref={this.birthRef} />
             </label>
             {errors.birthday && <span className="error">{ErrorName.birthday}</span>}
           </div>
           <div className="file">
             <label>
-              <input type="file" id="file" ref={this.fileRef} />
+              <input type="file" ref={this.fileRef} />
             </label>
             {errors.image && <div className="error">{ErrorName.image}</div>}
           </div>

@@ -9,7 +9,8 @@
 }
 
 .valueitem {
-  padding: 0.2rem;
+  padding: 0.2rem 0.8rem;
+  overflow: hidden;
 }
 
 .image {
