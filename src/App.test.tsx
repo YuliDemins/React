@@ -5,7 +5,6 @@ import '@testing-library/jest-dom';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 import { Header } from './components/header/Header';
-import { Cards } from './components/cards/Cards';
 import { Card } from './components/card/Card';
 import { Home } from './pages/home/Home';
 import { About } from './pages/about/About';

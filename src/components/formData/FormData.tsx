@@ -164,7 +164,7 @@ class FormData extends Component<DataProps, DataState> {
           </div>
           <div className="file">
             <label>
-              <input type="file" ref={this.fileRef} />
+              <input type="file" ref={this.fileRef} accept=".png,.jpg,.jpeg,.webp" />
             </label>
             {errors.image && <div className="error">{ErrorName.image}</div>}
           </div>
