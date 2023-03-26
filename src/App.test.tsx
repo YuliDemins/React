@@ -122,7 +122,8 @@ describe('App', () => {
     expect(screen.getByText(/agree/i)).toBeInTheDocument();
   });
   it('renders modal', () => {
-    render(<Modal />);
+    const setIsFormValid = () => {};
+    render(<Modal setIsFormValid={setIsFormValid} />);
     expect(screen.getByText(/данные отправлены/i)).toBeInTheDocument();
   });
   it('renders main', () => {
