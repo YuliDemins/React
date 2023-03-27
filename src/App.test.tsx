@@ -95,6 +95,7 @@ describe('App', () => {
     userEvent.click(screen.getByText('Submit'));
   });
   it('render FormValue', () => {
+    const id = 12;
     const imageValue = 'test.png';
     const nameValue = 'Test';
     const countryValue = 'Spain';
@@ -106,6 +107,7 @@ describe('App', () => {
       <FormValue
         key={1}
         values={{
+          id,
           imageValue,
           nameValue,
           countryValue,
