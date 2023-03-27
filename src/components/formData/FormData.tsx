@@ -21,11 +21,13 @@ interface Errors {
 
 type DataProps = Record<string, never>;
 type DataState = {
+  key: number;
   isFormValid: boolean;
   errors: Errors;
   components: JSX.Element[];
 };
 class FormData extends Component<DataProps, DataState> {
+  formRef: React.RefObject<HTMLFormElement>;
   nameRef: React.RefObject<HTMLInputElement>;
   maleRef: React.RefObject<HTMLInputElement>;
   femaleRef: React.RefObject<HTMLInputElement>;
@@ -35,6 +37,7 @@ class FormData extends Component<DataProps, DataState> {
   agreeRef: React.RefObject<HTMLInputElement>;
   constructor(props: DataProps) {
     super(props);
+    this.formRef = createRef();
     this.nameRef = createRef();
     this.maleRef = createRef();
     this.femaleRef = createRef();
@@ -43,6 +46,7 @@ class FormData extends Component<DataProps, DataState> {
     this.birthRef = createRef();
     this.agreeRef = createRef();
     this.state = {
+      key: 1,
       isFormValid: false,
       errors: {},
       components: [],
@@ -120,9 +124,8 @@ class FormData extends Component<DataProps, DataState> {
           ],
         });
 
-        const form = event.target as HTMLFormElement;
-        form.reset();
         this.setState({
+          key: this.state.key + 1,
           errors: {},
         });
       }
@@ -133,7 +136,7 @@ class FormData extends Component<DataProps, DataState> {
     const { errors, isFormValid, components } = this.state;
     return (
       <>
-        <form className="form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit} key={this.state.key}>
           <div className="name">
             <label>
               Name:
