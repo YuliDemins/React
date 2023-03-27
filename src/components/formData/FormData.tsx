@@ -111,6 +111,7 @@ class FormData extends Component<DataProps, DataState> {
             <FormValue
               key={this.state.components.length}
               values={{
+                id: this.state.components.length,
                 imageValue: URL.createObjectURL(this.fileRef.current.files[0]),
                 nameValue: this.nameRef.current.value,
                 countryValue: this.countryRef.current.value,
