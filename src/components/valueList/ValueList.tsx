@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import './valueList.css';
+import './valuelist.css';
 
 type ListProps = {
   children: JSX.Element | JSX.Element[] | null;
