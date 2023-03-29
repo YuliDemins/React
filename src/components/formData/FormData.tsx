@@ -1,9 +1,8 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import './formdata.css';
-import { Modal } from '../modal/Modal';
 import { IFormData, IFormValues } from '../../types/types';
 import { InputName } from './InputName';
 import { InputCountry } from './InputCountry';
@@ -14,16 +13,15 @@ import { InputAgree } from './InputAgree';
 
 type DataProps = {
   showCardsValues: (data: IFormData) => void;
+  showModal: (value: boolean) => void;
 };
 
-export const FormData: FC<DataProps> = ({ showCardsValues }) => {
+export const FormData: FC<DataProps> = ({ showCardsValues, showModal }) => {
   const methods = useForm<IFormValues>();
   const { reset } = methods;
 
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
-
   const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
-    setIsFormValid(true);
+    showModal(true);
 
     const cardValues = {
       id: data.name,
@@ -52,7 +50,6 @@ export const FormData: FC<DataProps> = ({ showCardsValues }) => {
           Submit
         </button>
       </form>
-      {isFormValid && <Modal setIsFormValid={setIsFormValid} />}
     </FormProvider>
   );
 };
