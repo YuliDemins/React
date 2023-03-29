@@ -3,27 +3,26 @@ import { Component } from 'react';
 import './formvalue.css';
 
 type FormValueProp = {
-  values: {
+  data: {
     id: string;
-    imageValue: string;
-    nameValue: string;
-    countryValue: string;
-    birthdayValue: string;
-    genderValue: string;
+    image: string;
+    name: string;
+    country: string;
+    birthday: string;
+    gender: string;
     agree: boolean;
   };
 };
 class FormValue extends Component<FormValueProp> {
   render() {
-    const { id, imageValue, nameValue, countryValue, birthdayValue, genderValue, agree } =
-      this.props.values;
+    const { id, image, name, country, birthday, gender, agree } = this.props.data;
     return (
       <div className="value" id={id}>
-        <img className="image" src={imageValue} alt="" />
-        <div className="valueitem">Name: {nameValue}</div>
-        <div className="valueitem">Country: {countryValue}</div>
-        <div className="valueitem">Birthday: {birthdayValue}</div>
-        <div className="valueitem">Gender: {genderValue}</div>
+        <img className="image" src={image} alt="" />
+        <div className="valueitem">Name: {name}</div>
+        <div className="valueitem">Country: {country}</div>
+        <div className="valueitem">Birthday: {birthday}</div>
+        <div className="valueitem">Gender: {gender}</div>
         <div className="valueitem">Agree: {agree ? 'yes' : 'no'}</div>
       </div>
     );
