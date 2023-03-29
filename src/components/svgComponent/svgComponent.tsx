@@ -1,14 +1,9 @@
-import { Component } from 'react';
+import { FC } from 'react';
 
 interface SVGProp {
   src: string;
   id: number;
 }
-class SVGComponent extends Component<SVGProp> {
-  render() {
-    const { src, id } = this.props;
-    return <img src={src} id={id.toString()} />;
-  }
-}
-
-export { SVGComponent };
+export const SVGComponent: FC<SVGProp> = ({ src, id }) => {
+  return <img src={src} id={id.toString()} />;
+};

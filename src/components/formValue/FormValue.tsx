@@ -4,6 +4,7 @@ import './formvalue.css';
 
 type FormValueProp = {
   values: {
+    id: string;
     imageValue: string;
     nameValue: string;
     countryValue: string;
@@ -14,10 +15,10 @@ type FormValueProp = {
 };
 class FormValue extends Component<FormValueProp> {
   render() {
-    const { imageValue, nameValue, countryValue, birthdayValue, genderValue, agree } =
+    const { id, imageValue, nameValue, countryValue, birthdayValue, genderValue, agree } =
       this.props.values;
     return (
-      <div className="value">
+      <div className="value" id={id}>
         <img className="image" src={imageValue} alt="" />
         <div className="valueitem">Name: {nameValue}</div>
         <div className="valueitem">Country: {countryValue}</div>

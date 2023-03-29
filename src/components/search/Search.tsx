@@ -1,61 +1,47 @@
-import React, { ChangeEvent, Component } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import './search.css';
 
-type SearchProps = Record<string, never>;
+export const Search = () => {
+  const LsSearch = localStorage.getItem('search');
+  const [value, setValue] = useState<string>(LsSearch || '');
 
-type SearchState = {
-  value: string;
-};
+  const searchRef = useRef<string>();
 
-class Search extends Component<SearchProps, SearchState> {
-  constructor(props: SearchProps) {
-    super(props);
-    const LsSearch = localStorage.getItem('search');
-    this.state = {
-      value: LsSearch ? JSON.parse(LsSearch) : '',
+  useEffect(() => {
+    searchRef.current = value;
+  }, [value]);
+
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('search', searchRef.current || '');
     };
-  }
+  }, []);
 
-  componentWillUnmount() {
-    localStorage.setItem('search', JSON.stringify(this.state.value));
-  }
-
-  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target) {
-      this.setState({
-        value: event.target.value,
-      });
-    }
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
   };
 
-  handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault;
-    this.setState({
-      value: this.state.value,
-    });
-    localStorage.setItem('search', JSON.stringify(this.state.value));
+    localStorage.setItem('search', value);
   };
 
-  render() {
-    return (
-      <div className="form-search">
-        <label htmlFor="search" className="label-search">
-          <span className="material-symbols-outlined">search</span>
-          <input
-            type="text"
-            className="input-search"
-            id="search"
-            onChange={this.handleChange}
-            value={this.state.value}
-          />
-        </label>
-        <button className="button-search" onClick={this.handleClick}>
-          Search
-        </button>
-      </div>
-    );
-  }
-}
-
-export { Search };
+  return (
+    <div className="form-search">
+      <label htmlFor="search" className="label-search">
+        <span className="material-symbols-outlined">search</span>
+        <input
+          type="text"
+          className="input-search"
+          id="search"
+          onChange={handleChange}
+          value={value}
+        />
+      </label>
+      <button className="button-search" onClick={handleClick}>
+        Search
+      </button>
+    </div>
+  );
+};

@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   background: rgba(232, 232, 237, 0.3);
+  transition: all 0.3s ease;
 }
 
 .modal {
@@ -20,4 +21,5 @@
   box-shadow: 0px 2px 8px 2px rgba(128, 129, 150, 0.31);
   background: rgb(113, 113, 118);
   color: white;
+  transition: all 0.3s ease;
 }
