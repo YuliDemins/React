@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import './search.css';
+import styles from './search.module.css';
 
 export const Search = () => {
   const LsSearch = localStorage.getItem('search');
@@ -28,18 +28,18 @@ export const Search = () => {
   };
 
   return (
-    <div className="form-search">
-      <label htmlFor="search" className="label-search">
-        <span className="material-symbols-outlined">search</span>
+    <div className={styles['form-search']}>
+      <label htmlFor="search" className={styles['label-search']}>
+        <span className={styles['material-symbols-outlined']}>search</span>
         <input
           type="text"
-          className="input-search"
+          className={styles['input-search']}
           id="search"
           onChange={handleChange}
           value={value}
         />
       </label>
-      <button className="button-search" onClick={handleClick}>
+      <button className={styles['button-search']} onClick={handleClick}>
         Search
       </button>
     </div>

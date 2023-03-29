@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { ErrorName } from '../../types/types';
+import styles from './formdata.module.css';
 
 export const InputFile = () => {
   const {
@@ -8,7 +9,7 @@ export const InputFile = () => {
   } = useFormContext();
 
   return (
-    <div className="file">
+    <div className={styles.file}>
       <label>
         <input
           type="file"
@@ -18,7 +19,7 @@ export const InputFile = () => {
           })}
         />
       </label>
-      {errors.image && <div className="error">{ErrorName.image}</div>}
+      {errors.image && <div className={styles.error}>{ErrorName.image}</div>}
     </div>
   );
 };

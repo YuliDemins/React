@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { ErrorName } from '../../types/types';
+import styles from './formdata.module.css';
 
 export const InputGender = () => {
   const {
@@ -8,13 +9,13 @@ export const InputGender = () => {
   } = useFormContext();
 
   return (
-    <div className="gender">
-      <div className="switcher">
+    <div className={styles.gender}>
+      <div className={styles.switcher}>
         <label>
           <input
             type="radio"
             value="male"
-            className="switcher-input"
+            className={styles['switcher-input']}
             {...register('gender', { required: true })}
           />
           Male
@@ -23,13 +24,13 @@ export const InputGender = () => {
           <input
             type="radio"
             value="female"
-            className="switcher-input"
+            className={styles['switcher-input']}
             {...register('gender', { required: true })}
           />
           Female
         </label>
       </div>
-      {errors.gender && <span className="error">{ErrorName.gender}</span>}
+      {errors.gender && <span className={styles.error}>{ErrorName.gender}</span>}
     </div>
   );
 };

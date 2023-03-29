@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { IFormData } from '../../types/types';
 import { FormValue } from '../formValue/FormValue';
 
-import './valuelist.css';
+import styles from './valuelist.module.css';
 
 type ListProps = {
   list: IFormData[];
@@ -10,7 +10,7 @@ type ListProps = {
 
 export const ValueList: FC<ListProps> = ({ list }) => {
   return (
-    <ul className="valuelist">
+    <ul className={styles.valuelist}>
       {list.map((value, index) => (
         <li key={index}>
           <FormValue

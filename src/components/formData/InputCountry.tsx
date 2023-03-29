@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { Countries, ErrorName } from '../../types/types';
+import styles from './formdata.module.css';
 
 export const InputCountry = () => {
   const {
@@ -8,10 +9,14 @@ export const InputCountry = () => {
   } = useFormContext();
 
   return (
-    <div className="country">
+    <div className={styles.country}>
       <label>
         country:
-        <select className="input" {...register('country', { required: true })} defaultValue="">
+        <select
+          className={styles.input}
+          {...register('country', { required: true })}
+          defaultValue=""
+        >
           <option value="" disabled>
             choose the country...
           </option>
@@ -20,7 +25,7 @@ export const InputCountry = () => {
           <option value={Countries.France}>{Countries.France}</option>
         </select>
       </label>
-      {errors.country && <span className="error">{ErrorName.country}</span>}
+      {errors.country && <span className={styles.error}>{ErrorName.country}</span>}
     </div>
   );
 };

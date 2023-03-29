@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import './formvalue.css';
+import styles from './formvalue.module.css';
 
 type FormValueProp = {
   data: {
@@ -17,13 +17,13 @@ class FormValue extends Component<FormValueProp> {
   render() {
     const { id, image, name, country, birthday, gender, agree } = this.props.data;
     return (
-      <div className="value" id={id}>
-        <img className="image" src={image} alt="" />
-        <div className="valueitem">Name: {name}</div>
-        <div className="valueitem">Country: {country}</div>
-        <div className="valueitem">Birthday: {birthday}</div>
-        <div className="valueitem">Gender: {gender}</div>
-        <div className="valueitem">Agree: {agree ? 'yes' : 'no'}</div>
+      <div className={styles.value} id={id}>
+        <img className={styles.image} src={image} alt="" />
+        <div className={styles['value-item']}>Name: {name}</div>
+        <div className={styles['value-item']}>Country: {country}</div>
+        <div className={styles['value-item']}>Birthday: {birthday}</div>
+        <div className={styles['value-item']}>Gender: {gender}</div>
+        <div className={styles['value-item']}>Agree: {agree ? 'yes' : 'no'}</div>
       </div>
     );
   }
