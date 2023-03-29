@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Nav } from '../nav/NavItems';
+import { Nav } from '../nav/Nav';
 import styles from './header.module.css';
 
 type HeaderProps = {
