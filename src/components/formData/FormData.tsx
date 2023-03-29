@@ -7,16 +7,17 @@ import './formdata.css';
 import { ValueList } from '../valueList/ValueList';
 import { Modal } from '../modal/Modal';
 
-const ErrorName = {
-  name: 'The first letter must be capitalized and more 1 letter',
-  country: 'Choose the country',
-  birthday: 'Choose the correct date',
-  image: 'Choose the file .png, .jpg or .webp',
-  gender: 'Choose the gender',
-  agree: 'must be chosen',
-};
+enum ErrorName {
+  field = 'This field is required',
+  name = 'The first letter must be capitalized and more 1 letter',
+  country = 'Choose the country',
+  birthday = 'Choose the correct date',
+  image = 'Choose the file .png, .jpg or .webp',
+  gender = 'Choose the gender',
+  agree = 'must be chosen',
+}
 
-enum CountryEnum {
+enum Countries {
   Russia = 'Russia',
   Spain = 'Spain',
   France = 'France',
@@ -24,7 +25,7 @@ enum CountryEnum {
 interface FormValues {
   id: string;
   name: string;
-  country: CountryEnum;
+  country: Countries;
   birthday: string;
   image: FileList;
   gender: string;
@@ -59,13 +60,16 @@ export const FormData: FC = () => {
               className="input"
               placeholder="Name"
               {...register('name', {
-                required: 'This field is required',
-                pattern: /^[А-ЯЁA-Z][а-яёa-z]+$/,
+                required: ErrorName.field,
+                pattern: {
+                  value: /^[А-ЯЁA-Z][а-яёa-z]+$/,
+                  message: ErrorName.name,
+                },
                 minLength: 2,
               })}
             />
           </label>
-          {errors.name && <span className="error">{errors.name.message || ErrorName.name}</span>}
+          {errors.name && <span className="error">{errors.name.message}</span>}
         </div>
         <div className="country">
           <label>
@@ -74,9 +78,9 @@ export const FormData: FC = () => {
               <option value="" disabled>
                 choose the country...
               </option>
-              <option value="Russia">{CountryEnum.Russia}</option>
-              <option value="Spain">{CountryEnum.Spain}</option>
-              <option value="France">{CountryEnum.France}</option>
+              <option value="Russia">{Countries.Russia}</option>
+              <option value="Spain">{Countries.Spain}</option>
+              <option value="France">{Countries.France}</option>
             </select>
           </label>
           {errors.country && <span className="error">{ErrorName.country}</span>}
@@ -102,10 +106,6 @@ export const FormData: FC = () => {
               accept=".png,.jpg,.jpeg,.webp"
               {...register('image', {
                 required: true,
-                validate: (value) =>
-                  value[0].type === 'image/png' ||
-                  value[0].type === 'image/jpeg' ||
-                  value[0].type === 'image/webp',
               })}
             />
           </label>
