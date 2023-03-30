@@ -1,0 +1,103 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 1.2rem;
+  border-radius: 4px;
+  background: rgb(252, 252, 252);
+  border: 1px solid rgba(179, 179, 181, 0.35);
+  min-height: 300px;
+}
+
+.card:hover{
+  -webkit-box-shadow: 0px 2px 8px 2px rgba(128, 129, 150, 0.31);
+  -moz-box-shadow: 0px 2px 8px 2px rgba(128, 129, 150, 0.31);
+  box-shadow: 0px 2px 8px 2px rgba(128, 129, 150, 0.31);
+}
+
+.image > img {
+  display: block;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  aspect-ratio: 1.5/1;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.info {
+  margin: 0.6rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wrapper{
+  flex: 1 0 auto;
+  margin-bottom: 0.7rem;
+}
+
+.title {
+font-weight: 800;
+text-transform: uppercase;
+}
+
+.author {
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  color: black;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+.likes {
+  opacity: 0.7;
+  display: flex;
+  margin-right: 15px;
+  align-self: flex-end;
+}
+
+.show {
+  opacity: 0.7;
+  display: flex;
+}
+
+.favorite{
+  position: relative;
+  z-index: 1;
+}
+.favorite > img{
+  position: absolute;
+  z-index: 5;
+  top:0;
+  left:0;
+  width: 18px;
+  height: 18px;
+  margin: 3px 3px 0 0;
+  cursor: pointer;
+  fill:'#fd171f';
+}
+
+.svg:hover{
+  fill:'#fd171f';
+}
+
+.likes > span{
+margin-left: 20px;
+}
+
+.likes:hover{
+  opacity: 1;
+}
+
+.vis {
+  width: 18px;
+  height: 18px;
+  margin: 3px 3px 0 0;
+  background: url(../../assets/svg/visibility.svg) center/contain no-repeat;
+}
+.show:hover{
+  opacity: 1;
+}

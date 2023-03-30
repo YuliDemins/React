@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.active {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  background: rgb(113, 113, 118);
+  cursor: default;
+}
