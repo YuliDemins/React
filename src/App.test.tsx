@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
@@ -88,7 +88,9 @@ describe('App', () => {
     expect(screen.getByText(/form/i)).toBeInTheDocument();
   });
   it('check FormData', () => {
-    render(<FormData />);
+    const showCardsValues = () => vi.fn;
+    const setShowModal = () => vi.fn;
+    render(<FormData showCardsValues={showCardsValues} showModal={setShowModal} />);
     fireEvent.change(screen.getByLabelText(/name/i), { target: { value: 'John' } });
     fireEvent.change(screen.getByLabelText(/country/i), { target: { value: 'Spain' } });
     fireEvent.change(screen.getByLabelText(/birthday/i), { target: { value: '12.03.2022' } });
@@ -96,23 +98,23 @@ describe('App', () => {
   });
   it('render FormValue', () => {
     const id = 'Test';
-    const imageValue = 'test.png';
-    const nameValue = 'Test';
-    const countryValue = 'Spain';
-    const birthdayValue = '12.03.2022';
-    const genderValue = 'male';
+    const image = 'test.png';
+    const name = 'Test';
+    const country = 'Spain';
+    const birthday = '12.03.2022';
+    const gender = 'male';
     const agree = true;
 
     render(
       <FormValue
         key={1}
-        values={{
+        data={{
           id,
-          imageValue,
-          nameValue,
-          countryValue,
-          birthdayValue,
-          genderValue,
+          image,
+          name,
+          country,
+          birthday,
+          gender,
           agree,
         }}
       />
@@ -124,8 +126,7 @@ describe('App', () => {
     expect(screen.getByText(/agree/i)).toBeInTheDocument();
   });
   it('renders modal', () => {
-    const setIsFormValid = () => {};
-    render(<Modal setIsFormValid={setIsFormValid} />);
+    render(<Modal />);
     expect(screen.getByText(/данные отправлены/i)).toBeInTheDocument();
   });
   it('renders main', () => {
