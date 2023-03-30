@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Nav } from '../nav/Nav';
 import styles from './header.module.css';
 
