@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { Component } from 'react';
+>>>>>>> 53781ddc4d089a5c3793639eeddaa621d66ba674
 import './about.css';
 
 export const About = () => {
