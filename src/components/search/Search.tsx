@@ -30,7 +30,7 @@ export const Search = () => {
   return (
     <div className={styles['form-search']}>
       <label htmlFor="search" className={styles['label-search']}>
-        <span className={styles['material-symbols-outlined']}>search</span>
+        <span className="material-symbols-outlined">search</span>
         <input
           type="text"
           className={styles['input-search']}
