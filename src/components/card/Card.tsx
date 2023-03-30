@@ -13,11 +13,7 @@ export interface CardProps {
   show: number;
 }
 
-export interface CardState {
-  isLike: boolean;
-}
-
-class Card extends Component<CardProps, CardState> {
+class Card extends Component<CardProps> {
   render() {
     const { id, src, title, author, likes, show } = this.props;
     return (
