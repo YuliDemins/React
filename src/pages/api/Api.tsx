@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Search } from '../../components/search/Search';
 import { ICat } from '../../types/api.interface';
 import styles from './api.module.css';
 import { Cat } from './Cat';
@@ -11,16 +12,27 @@ export const Api = () => {
 
   const [catId, setCatId] = useState<string>('');
 
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [quantity, setQuantity] = useState(0);
+
   const baseURL = 'https://api.thecatapi.com/v1/breeds?api_key='; //вывести породы
   const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
 
+  // https://api.thecatapi.com/v1/breeds/search?q={query} для поиска
+
   useEffect(() => {
-    fetch(`${baseURL}${key}`)
+    fetch(`${baseURL}${key}/search?q=${query}&limit=${limit}&page=${page - 1}`)
       .then((res) => res.json())
       .then((data: ICat[]) => {
         setCats(data);
+        // setQuery(query);
       });
-  }, []);
+
+    // setQuantity(nbPages);
+  }, [query, page]);
+  // };
 
   const handleClick = (id: string) => {
     setCatId(id);
@@ -30,11 +42,10 @@ export const Api = () => {
   return (
     <>
       <h1 className="main-title">API Cats</h1>
+      <Search setQuery={(value) => setQuery(value)} />
       <div className={styles.cards}>
-        {cats.map((cat, index) => {
-          if (index !== 31 && index !== 30 && index !== 40 && index !== 41) {
-            return <Cat key={cat.id} {...cat} onClick={() => handleClick(cat.id)} />;
-          }
+        {cats.map((cat) => {
+          return <Cat key={cat.id} {...cat} onClick={() => handleClick(cat.id)} />;
         })}
       </div>
       {visible && <CatsModal id={catId} setVisible={setVisible} />}
