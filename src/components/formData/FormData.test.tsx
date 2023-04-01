@@ -1,15 +1,41 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import { FormData } from './FormData';
 
-describe('Home', () => {
-  it('check FormData', () => {
+describe('FormData', () => {
+  const Country = ['Russia', 'Spain', 'France'];
+  beforeAll(() => {
     render(<FormData />);
-    fireEvent.change(screen.getByLabelText(/name/i), { target: { value: 'John' } });
-    fireEvent.change(screen.getByLabelText(/country/i), { target: { value: 'Spain' } });
-    fireEvent.change(screen.getByLabelText(/birthday/i), { target: { value: '12.03.2022' } });
-    userEvent.click(screen.getByText('Submit'));
+  });
+  it('check FormData', async () => {
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
+
+    const nameInput = screen.getByLabelText<HTMLInputElement>(/name/i);
+    expect(nameInput).toBeInTheDocument();
+    await userEvent.type(nameInput, 'test');
+    expect(nameInput.value).toEqual('test');
+
+    const countryInput = screen.getByLabelText<HTMLSelectElement>(/country/i);
+    expect(countryInput).toBeInTheDocument();
+    await userEvent.selectOptions(countryInput, Country[2]);
+    expect(countryInput.value).toEqual(Country[2]);
+
+    const birthdayInput = screen.getByLabelText<HTMLInputElement>(/birthday/i);
+    expect(birthdayInput).toBeInTheDocument();
+
+    const fileInput = screen.getByLabelText<HTMLInputElement>('', {
+      selector: 'input[type="file"]',
+    });
+    expect(fileInput).toBeInTheDocument();
+
+    test('remove values', async () => {
+      await userEvent.type(nameInput, 'test');
+      await userEvent.selectOptions(countryInput, Country[2]);
+      userEvent.click(screen.getByRole('button', { name: 'Submit' }));
+
+      expect(nameInput.value).toBe('');
+      expect(countryInput.value).toBe('');
+    });
   });
 });
