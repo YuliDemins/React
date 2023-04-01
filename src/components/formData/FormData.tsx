@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { FormValue } from '../formValue/FormValue';
 
 import './formdata.css';
-import { ValueList } from '../valueList/ValueList';
 import { Modal } from '../modal/Modal';
 
 const ErrorName = {
