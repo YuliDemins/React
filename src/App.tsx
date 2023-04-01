@@ -13,11 +13,11 @@ export const App = () => {
   return (
     <Routes>
       <Route index element={<Layout title="Home" content={<Home />} />} />
-      <Route key="1" path="/" element={<Layout title="Home" content={<Home />} />} />
-      <Route key="2" path="about" element={<Layout title="About" content={<About />} />} />
-      <Route key="3" path="form" element={<Layout title="Form" content={<Form />} />} />
-      <Route key="4" path="api" element={<Layout title="API" content={<Api />} />} />
-      <Route key="5" path="*" element={<Layout title="404" content={<NotFound />} />} />
+      <Route path="/" element={<Layout title="Home" content={<Home />} />} />
+      <Route path="about" element={<Layout title="About" content={<About />} />} />
+      <Route path="form" element={<Layout title="Form" content={<Form />} />} />
+      <Route path="api" element={<Layout title="API" content={<Api />} />} />
+      <Route path="*" element={<Layout title="404" content={<NotFound />} />} />
     </Routes>
   );
 };

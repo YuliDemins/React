@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './nav.module.css';
 
-type Links = {
+interface ILink {
   id: number;
   route: string;
   text: string;
-};
+}
 
-const links: Links[] = [
+const links: ILink[] = [
   {
     id: 0,
     route: '/',
