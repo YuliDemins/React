@@ -201,11 +201,11 @@ class FormData extends Component<DataProps, DataState> {
           </button>
         </form>
         {isFormValid && <Modal />}
-        <ValueList>
+        <ul className="valuelist">
           {components
             ? components.map((component, index) => <li key={index}>{component}</li>)
             : null}
-        </ValueList>
+        </ul>
       </>
     );
   }
