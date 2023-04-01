@@ -27,24 +27,16 @@ type DataState = {
   components: JSX.Element[];
 };
 class FormData extends Component<DataProps, DataState> {
-  formRef: React.RefObject<HTMLFormElement>;
-  nameRef: React.RefObject<HTMLInputElement>;
-  maleRef: React.RefObject<HTMLInputElement>;
-  femaleRef: React.RefObject<HTMLInputElement>;
-  countryRef: React.RefObject<HTMLSelectElement>;
-  fileRef: React.RefObject<HTMLInputElement>;
-  birthRef: React.RefObject<HTMLInputElement>;
-  agreeRef: React.RefObject<HTMLInputElement>;
+  formRef = createRef<HTMLFormElement>();
+  nameRef = createRef<HTMLInputElement>();
+  maleRef = createRef<HTMLInputElement>();
+  femaleRef = createRef<HTMLInputElement>();
+  countryRef = createRef<HTMLSelectElement>();
+  fileRef = createRef<HTMLInputElement>();
+  birthRef = createRef<HTMLInputElement>();
+  agreeRef = createRef<HTMLInputElement>();
   constructor(props: DataProps) {
     super(props);
-    this.formRef = createRef();
-    this.nameRef = createRef();
-    this.maleRef = createRef();
-    this.femaleRef = createRef();
-    this.countryRef = createRef();
-    this.fileRef = createRef();
-    this.birthRef = createRef();
-    this.agreeRef = createRef();
     this.state = {
       key: 1,
       isFormValid: false,
