@@ -15,7 +15,7 @@ export const Search: FC<SearchProp> = ({ setQuery }) => {
   useEffect(() => {
     searchRef.current = value;
     setQuery(searchRef.current);
-  }, [value]);
+  }, [setQuery, value]);
 
   useEffect(() => {
     return () => {

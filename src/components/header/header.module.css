@@ -2,11 +2,13 @@
   display: flex;
   justify-content: space-around;
   flex: 0 0 auto;
-  background: rgb(140, 140, 141);
+  /* background: rgb(140, 140, 141); */
+  background: rgb(86, 123, 149);
 }
 
 .title {
   font-weight: 800;
   text-transform: uppercase;
   padding: 1rem;
+  color: rgb(25, 42, 54);;
 }

@@ -20,6 +20,7 @@
   outline: none;
   border-radius: 8px 0px 0px 8px;
   border: 1px solid rgba(179, 179, 181, 0.35);
+  border: 1px solid rgba(164,139,113, 0.4);
   background: rgb(252, 252, 252);
   color: rgb(21, 21, 40);
   position: relative;
@@ -42,10 +43,11 @@
 }
 
 .button-search {
-  color: rgb(109, 109, 122);
+  color: rgb(63, 100, 127);;
   background: rgb(252, 252, 252);
   border-radius: 0px 8px 8px 0px;
-  border: 1px solid rgba(179, 179, 181, 0.35);
+  /* border: 1px solid rgba(179, 179, 181, 0.35); */
+  border: 1px solid rgba(164,139,113, 0.4);
   padding: 10px 30px;
   cursor: pointer;
   text-transform: uppercase;

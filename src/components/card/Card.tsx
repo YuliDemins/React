@@ -1,40 +1,47 @@
-import { FC } from 'react';
-import { SVGComponent } from '../svgComponent/svgComponent';
-
+import { FC, useEffect, useState } from 'react';
+import { ICat } from '../../types/api.interface';
 import styles from './card.module.css';
-import like from '/src/assets/svg/favorite.svg';
 
-export interface CardProps {
-  id: number;
-  src: string;
-  title: string;
-  author: string;
-  likes: number;
-  show: number;
-}
-export const Card: FC<CardProps> = ({ id, src, title, author, likes, show }) => {
+type CatProp = {
+  onClick: () => void;
+};
+
+export const Card: FC<ICat & CatProp> = ({
+  id,
+  name,
+  description,
+  temperament,
+  image,
+  reference_image_id,
+  origin,
+  life_span,
+  onClick,
+}) => {
+  const [breedImage, setBreedImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const response = await fetch(
+        `https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`
+      );
+      const data = await response.json();
+      console.log(data[0].url);
+      setBreedImage(data[0].url);
+      setIsLoading(false);
+    };
+
+    fetchImage();
+  }, [id]);
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onClick}>
       <div className={styles.image}>
-        <img src={src} alt={id.toString()} />
+        {isLoading ? <h2>Loading...</h2> : <img src={breedImage} alt={id} />}
       </div>
       <div className={styles.info}>
-        <div className={styles.wrapper}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.author}>{author}</div>
-        </div>
-        <div className={styles.stats}>
-          <div className={styles.likes}>
-            <div className={styles.favorite}>
-              <SVGComponent src={like} id={id} />
-            </div>
-            <span>{likes}</span>
-          </div>
-          <div className={styles.show}>
-            <div className={styles.vis} />
-            <div>{show}</div>
-          </div>
-        </div>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.temperament}>{temperament}</div>
       </div>
     </div>
   );

@@ -6,7 +6,12 @@ type pathType = {
   [key: string]: string;
 };
 
-const pathName: pathType = { '/': 'Home', '/about': 'About', '/form': 'Form', '/*': '404' };
+const pathName: pathType = {
+  '/': 'Home',
+  '/about': 'About',
+  '/form': 'Form',
+  '/*': '404',
+};
 
 export const Header = () => {
   const { pathname } = useLocation();
@@ -15,7 +20,7 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.title}>{title}</div>;
+      <div className={styles.title}>{title}</div>
       <Nav />
     </header>
   );

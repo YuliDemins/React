@@ -10,7 +10,6 @@ import { Home } from './pages/home/Home';
 import { NotFound } from './pages/notFound/NotFound';
 import { Layout } from './components/layout/Layout';
 import { Form } from './pages/form/Form';
-import { Api } from './pages/api/Api';
 
 export const App = () => {
   return (

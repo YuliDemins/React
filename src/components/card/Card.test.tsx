@@ -1,20 +1,26 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { Card } from './Card';
 
 describe('Card', () => {
   it('renders title, author in cards', () => {
-    const id = 0;
-    const src = 'Test url';
-    const title = 'Test Title';
-    const author = 'Test Author';
-    const likes = 0;
-    const show = 0;
+    const id = 'test';
+    const name = 'Test name';
+    const temperament = 'Test temperament';
+    const onClick = vi.fn();
+
     render(
-      <Card key={id} id={id} src={src} title={title} author={author} likes={likes} show={show} />
+      <Card
+        key={id}
+        id={id}
+        name={name}
+        temperament={temperament}
+        life_span={'test'}
+        onClick={onClick}
+      />
     );
-    expect(screen.getByText(/title/i)).toBeInTheDocument();
-    expect(screen.getByText(/author/i)).toBeInTheDocument();
+    expect(screen.getByText(/test name/i)).toBeInTheDocument();
+    expect(screen.getByText(/test temperament/i)).toBeInTheDocument();
   });
 });
