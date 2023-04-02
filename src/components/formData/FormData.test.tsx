@@ -1,14 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { describe, test, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { FormData } from './FormData';
+import { Countries } from '../../types/types';
 
 describe('FormData', () => {
-  const Country = ['Russia', 'Spain', 'France'];
   beforeAll(() => {
-    render(<FormData />);
+    const showCardsValues = vi.fn();
+    const setShowModal = vi.fn();
+    render(<FormData showCardsValues={showCardsValues} showModal={setShowModal} />);
   });
-  it('check FormData', async () => {
+  test('check FormData', async () => {
     expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
 
     const nameInput = screen.getByLabelText<HTMLInputElement>(/name/i);
@@ -18,8 +20,8 @@ describe('FormData', () => {
 
     const countryInput = screen.getByLabelText<HTMLSelectElement>(/country/i);
     expect(countryInput).toBeInTheDocument();
-    await userEvent.selectOptions(countryInput, Country[2]);
-    expect(countryInput.value).toEqual(Country[2]);
+    await userEvent.selectOptions(countryInput, Countries.France);
+    expect(countryInput.value).toEqual(Countries.France);
 
     const birthdayInput = screen.getByLabelText<HTMLInputElement>(/birthday/i);
     expect(birthdayInput).toBeInTheDocument();
@@ -31,7 +33,7 @@ describe('FormData', () => {
 
     test('remove values', async () => {
       await userEvent.type(nameInput, 'test');
-      await userEvent.selectOptions(countryInput, Country[2]);
+      await userEvent.selectOptions(countryInput, Countries.France);
       userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(nameInput.value).toBe('');
