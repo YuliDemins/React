@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from '../../components/card/Card';
 import { ICat } from '../../types/api.interface';
-import { CatsModal } from '../api/CatsModal';
+import { CatsModal } from '../../components/card/catModal/CatsModal';
 import { Search } from '../../components/search/Search';
 import './home.css';
 

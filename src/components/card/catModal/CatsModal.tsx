@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
-import { CatBreed } from '../../types/api.interface';
+import { CatBreed } from '../../../types/api.interface';
 import axios from 'axios';
-import styles from './api.module.css';
+import styles from './catmodal.module.css';
 
 type CatModalProp = {
   id: string;

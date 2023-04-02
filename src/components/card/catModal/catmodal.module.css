@@ -4,7 +4,6 @@
   width: 100%;
   object-position: top;
   object-fit: cover;
-  /* object-fit: contain; */
   aspect-ratio: 1.5/1;
   border-radius: 8px 8px 0px 0px;
 }
@@ -35,10 +34,8 @@
   left: 50%;
   width: 35rem;
   transform: translate(-50%, -50%);
-  /* padding: 1rem; */
   border-radius: 8px;
   box-shadow: 0px 4px 8px 4px rgba(116, 95, 73, 0.5);
-  /* background: rgb(113, 113, 118); */
   background: rgb(116, 95, 73);
   color: white;
   transition: all 0.3s ease;
@@ -53,23 +50,14 @@ color: white;
 padding: 1rem;
 }
 
-.image{
-  
-}
-
 .name {
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   color: white;
   margin-bottom: 20px;
 }
 
-.origin {
-  margin-bottom: 20px;
-  color: white;
-  font-weight: 400;
-}
-
+.origin,
 .description {
   margin-bottom: 20px;
   color: white;
@@ -96,7 +84,7 @@ padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 800;
+  font-weight: 700;
   color: white;
   line-height: 1;
   font-size: 20px;
