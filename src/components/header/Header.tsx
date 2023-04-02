@@ -1,15 +1,21 @@
-import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Nav } from '../nav/Nav';
 import styles from './header.module.css';
 
-type HeaderProps = {
-  headerTitle: JSX.Element;
+type pathType = {
+  [key: string]: string;
 };
 
-export const Header: FC<HeaderProps> = ({ headerTitle }) => {
+const pathName: pathType = { '/': 'Home', '/about': 'About', '/form': 'Form', '/*': '404' };
+
+export const Header = () => {
+  const { pathname } = useLocation();
+  let title = '';
+  pathname in pathName ? (title = pathName[pathname]) : (title = '404');
+
   return (
     <header className={styles.header}>
-      {headerTitle}
+      <div className={styles.title}>{title}</div>;
       <Nav />
     </header>
   );

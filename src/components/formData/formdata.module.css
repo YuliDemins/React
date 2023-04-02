@@ -67,3 +67,8 @@
   background: #1967d2;
   border: none;
 }
+
+.valuelist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
