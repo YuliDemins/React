@@ -11,11 +11,12 @@ import { Form } from './pages/form/Form';
 export const App = () => {
   return (
     <Routes>
-      <Route index element={<Layout title="Home" content={<Home />} />} />
-      <Route path="/" element={<Layout title="Home" content={<Home />} />} />
-      <Route path="about" element={<Layout title="About" content={<About />} />} />
-      <Route path="form" element={<Layout title="Form" content={<Form />} />} />
-      <Route path="*" element={<Layout title="404" content={<NotFound />} />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="form" element={<Form />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 };

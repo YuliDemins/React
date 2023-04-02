@@ -8,7 +8,7 @@ describe('Home', () => {
   it('renders main', () => {
     render(
       <MemoryRouter>
-        <Layout title="Home" content={'Home'} />
+        <Layout />
       </MemoryRouter>
     );
     expect(screen.getByRole('main')).toBeInTheDocument();
