@@ -1,8 +1,22 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { describe, it, Mock, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './Home';
+import axios from 'axios';
+
+// vi.mock('axios');
+
+// const hits = [
+//   {
+//     id: 1,
+//     title: 'React',
+//   },
+//   {
+//     id: 2,
+//     title: 'Vue',
+//   },
+// ];
 
 describe('Home', () => {
   it('renders Home route', () => {
@@ -15,4 +29,9 @@ describe('Home', () => {
     );
     expect(screen.getByText(/home/i)).toBeInTheDocument();
   });
+  // global.fetch = vi.fn(() =>
+  //   Promise.resolve({
+  //     json: () => Promise.resolve(...your_data),
+  //   })
+  // ) as Mock;
 });

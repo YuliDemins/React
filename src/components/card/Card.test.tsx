@@ -1,16 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
+import { render } from '@testing-library/react';
+import { describe, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { Card } from './Card';
 
 describe('Card', () => {
-  it('renders title, author in cards', () => {
+  test('render name and temperament in card', () => {
     const id = 'test';
     const name = 'Test name';
     const temperament = 'Test temperament';
     const onClick = vi.fn();
 
-    render(
+    const { getByText } = render(
       <Card
         key={id}
         id={id}
@@ -20,7 +20,9 @@ describe('Card', () => {
         onClick={onClick}
       />
     );
-    expect(screen.getByText(/test name/i)).toBeInTheDocument();
-    expect(screen.getByText(/test temperament/i)).toBeInTheDocument();
+    const nameElement = getByText(/test name/i);
+    expect(nameElement).toBeInTheDocument();
+    const temperamentElement = getByText(/test temperament/i);
+    expect(temperamentElement).toBeInTheDocument();
   });
 });

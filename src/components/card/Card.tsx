@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { ICat } from '../../types/api.interface';
+import { Preloader } from '../preloader/Preloader';
 import styles from './card.module.css';
 
 type CatProp = {
@@ -37,7 +38,7 @@ export const Card: FC<ICat & CatProp> = ({
   return (
     <div className={styles.card} onClick={onClick}>
       <div className={styles.image}>
-        {isLoading ? <h2>Loading...</h2> : <img src={breedImage} alt={id} />}
+        {isLoading ? <Preloader /> : <img src={breedImage} alt={id} />}
       </div>
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>

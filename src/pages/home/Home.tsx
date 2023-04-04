@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from '../../components/card/Card';
 import { ICat } from '../../types/api.interface';
-import { CatsModal } from '../../components/card/catModal/CatsModal';
+import { CatsModal } from '../../components/catModal/CatsModal';
 import { Search } from '../../components/search/Search';
 import './home.css';
+import { Preloader } from '../../components/preloader/Preloader';
 
 // const baseURL = 'https://api.thecatapi.com/v1/breeds?api_key='; //вывести породы
 const baseURL = 'https://api.thecatapi.com/v1/breeds';
@@ -29,12 +30,10 @@ export const Home = () => {
             },
           })
           .then((res) => {
-            console.log(res.data);
             setCats(res.data);
             setIsLoading(false);
           })
       : axios.get(`${baseURL}?api_key=${key}`).then((res) => {
-          console.log(res.data);
           setCats(res.data);
           setIsLoading(false);
         });
@@ -47,17 +46,19 @@ export const Home = () => {
 
   return (
     <>
-      <h1 className="main-title">Home page</h1>
+      {/* <h1 className="main-title">Home page</h1> */}
       <Search setQuery={(value) => setQuery(value)} />
-      <div className="cards">
-        {isLoading ? (
-          <h2>Loading...</h2>
-        ) : (
-          cats.map((cat: ICat) => {
+
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <div className="cards">
+          {cats.map((cat: ICat) => {
             return <Card key={cat.id} {...cat} onClick={() => handleClick(cat.id)} />;
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
+
       {visibleModal && <CatsModal id={catId} setVisibleModal={setVisibleModal} />}
     </>
   );
