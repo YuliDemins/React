@@ -6,7 +6,7 @@ export const NotFound = () => {
     <>
       <h1 className="main-title">404</h1>
       <p className="error-text">
-        This page doesn{"'"}t exist. Go <Link to="/">Home</Link>
+        This page doesn&lsquo;t exist. Go <Link to="/">Home</Link>
       </p>
     </>
   );

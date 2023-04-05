@@ -23,7 +23,7 @@ export const Search = () => {
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault;
+    event.preventDefault();
     localStorage.setItem('search', value);
   };
 
