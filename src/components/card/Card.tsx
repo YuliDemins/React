@@ -16,7 +16,7 @@ export const Card: FC<CardProps> = ({ id, src, title, author, likes, show }) => 
   return (
     <div className={styles.card}>
       <div className={styles.image}>
-        <img src={src} alt={id.toString()} />
+        <img src={src} alt={title} />
       </div>
       <div className={styles.info}>
         <div className={styles.wrapper}>

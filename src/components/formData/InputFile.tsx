@@ -16,6 +16,10 @@ export const InputFile = () => {
           accept=".png,.jpg,.jpeg,.webp"
           {...register('image', {
             required: true,
+            validate: (file) =>
+              file[0].type == 'image/png' ||
+              file[0].type == 'image/jpeg' ||
+              file[0].type == 'image/webp',
           })}
         />
       </label>
