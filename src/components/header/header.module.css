@@ -1,6 +1,7 @@
 .header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   flex: 0 0 auto;
   background: rgb(132, 163, 185);
 }
@@ -8,6 +9,5 @@
 .title {
   font-weight: 800;
   text-transform: uppercase;
-  padding: 1rem;
   color: rgb(25, 42, 54);
 }

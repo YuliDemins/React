@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
 import { ICat } from '../../types/api.interface';
 import { Preloader } from '../preloader/Preloader';
@@ -22,24 +23,26 @@ export const Card: FC<ICat & CatProp> = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchImage = async () => {
-      const response = await fetch(
-        `https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`
-      );
-      const data = await response.json();
-      console.log(data[0].url);
-      setBreedImage(data[0].url);
+    axios.get(`https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`).then((res) => {
+      if (!res.data.length) return;
+      else setBreedImage(res.data[0].url);
       setIsLoading(false);
-    };
-
-    fetchImage();
+    });
   }, [id]);
 
   return (
     <div className={styles.card} onClick={onClick}>
-      <div className={styles.image}>
-        {isLoading ? <Preloader /> : <img src={breedImage} alt={id} />}
-      </div>
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <div className={styles.image}>
+          {breedImage ? (
+            <img src={breedImage} alt={id} />
+          ) : (
+            <span className={styles.error}>картинка не найдена</span>
+          )}
+        </div>
+      )}
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>
         <div className={styles.temperament}>{temperament}</div>

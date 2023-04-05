@@ -11,7 +11,7 @@ type CatModalProp = {
 
 export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [breedImage, setBreedImage] = useState<string>('');
+  const [breedImage, setBreedImage] = useState('');
   const baseURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`; //вывести породы
   const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
 
@@ -32,17 +32,11 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   }, [baseURL]);
 
   useEffect(() => {
-    const fetchImage = async () => {
-      const response = await fetch(
-        `https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`
-      );
-      const data = await response.json();
-      console.log(data[0].url);
-      setBreedImage(data[0].url);
+    axios.get(`https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`).then((res) => {
+      if (!res.data.length) return;
+      else setBreedImage(res.data[0].url);
       setIsLoading(false);
-    };
-
-    fetchImage();
+    });
   }, [id]);
 
   return (
@@ -57,7 +51,11 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
           ) : (
             <>
               <div className={styles.image}>
-                <img src={breedImage} alt={id} />
+                {breedImage ? (
+                  <img src={breedImage} alt={cat?.name} />
+                ) : (
+                  <span className={styles.error}>картинка не найдена</span>
+                )}
               </div>
               <div className={styles.container}>
                 <div className={styles.name}>{cat?.name}</div>
