@@ -29,7 +29,7 @@ export const Search: FC<SearchProp> = ({ setQuery }) => {
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault;
+    event.preventDefault();
     localStorage.setItem('search', value);
   };
 
