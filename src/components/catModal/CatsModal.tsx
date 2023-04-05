@@ -13,6 +13,7 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [breedImage, setBreedImage] = useState('');
   const baseURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`; //вывести породы
+  const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
   const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
 
   const handleClick = () => setVisibleModal(false);
@@ -32,7 +33,7 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   }, [baseURL]);
 
   useEffect(() => {
-    axios.get(`https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`).then((res) => {
+    axios.get(`${imageURL}${id}&limit=1`).then((res) => {
       if (!res.data.length) return;
       else setBreedImage(res.data[0].url);
       setIsLoading(false);

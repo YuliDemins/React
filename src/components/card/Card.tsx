@@ -8,22 +8,14 @@ type CatProp = {
   onClick: () => void;
 };
 
-export const Card: FC<ICat & CatProp> = ({
-  id,
-  name,
-  description,
-  temperament,
-  image,
-  reference_image_id,
-  origin,
-  life_span,
-  onClick,
-}) => {
+export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => {
   const [breedImage, setBreedImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 
+  const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
+
   useEffect(() => {
-    axios.get(`https://api.thecatapi.com/v1/images/search?breed_id=${id}&limit=1`).then((res) => {
+    axios.get(`${imageURL}${id}&limit=1`).then((res) => {
       if (!res.data.length) return;
       else setBreedImage(res.data[0].url);
       setIsLoading(false);

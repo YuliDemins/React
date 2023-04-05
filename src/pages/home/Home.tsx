@@ -17,29 +17,10 @@ export const Home = () => {
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const [catId, setCatId] = useState<string>('');
   const [query, setQuery] = useState<string>('');
-  const [page, setPage] = useState(1);
-  // const [limit, setLimit] = useState(10);
-  const [quantity, setQuantity] = useState(0);
 
   const URL = query ? `${baseURL}/search?q=${query}` : `${baseURL}?api_key=${key}`;
 
   useEffect(() => {
-    // query
-    //   ? axios
-    //       .get(`${baseURL}/search?q=${query}`, {
-    //         headers: {
-    //           'x-api-key': key,
-    //         },
-    //       })
-    //       .then((res) => {
-    //         setCats(res.data);
-    //         setIsLoading(false);
-    //       })
-    //   : axios.get(`${baseURL}?api_key=${key}`).then((res) => {
-    //       setCats(res.data);
-    //       setIsLoading(false);
-    //     });
-
     axios
       .get(URL, {
         headers: {
@@ -50,7 +31,7 @@ export const Home = () => {
         setCats(res.data);
         setIsLoading(false);
       });
-  }, [query, page]);
+  }, [query, URL]);
 
   const handleClick = (id: string) => {
     setCatId(id);
