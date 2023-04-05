@@ -7,7 +7,7 @@ import { dataCards } from '../../dataCards';
 class Cards extends Component {
   render() {
     return (
-      <div className={styles.cards} data-testid="сards">
+      <div className={styles.cards}>
         {dataCards.map((el) => (
           <Card key={el.id} {...el} />
         ))}

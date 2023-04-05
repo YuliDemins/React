@@ -20,6 +20,11 @@ const links: Links[] = [
     route: '/about',
     text: 'About',
   },
+  {
+    id: 2,
+    route: '/form',
+    text: 'Form',
+  },
 ];
 
 const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? styles.active : styles.link);

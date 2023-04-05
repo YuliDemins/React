@@ -39,18 +39,20 @@ class Search extends Component<SearchProps, SearchState> {
 
   render() {
     return (
-      <div className="form">
-        <label htmlFor="search">
+      <div className="form-search">
+        <label htmlFor="search" className="label-search">
           <span className="material-symbols-outlined">search</span>
           <input
             type="text"
-            placeholder=""
+            className="input-search"
             id="search"
             onChange={this.handleChange}
             value={this.state.value}
           />
         </label>
-        <button onClick={this.handleClick}>Search</button>
+        <button className="button-search" onClick={this.handleClick}>
+          Search
+        </button>
       </div>
     );
   }
