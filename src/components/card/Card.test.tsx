@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
-import '@testing-library/jest-dom';
 import { Card } from './Card';
 
 describe('Card', () => {
