@@ -17,7 +17,7 @@ export interface ICat {
   description?: string; //описание
   temperament: string; //описание характера
   image?: CatImage;
-  life_span: string; //продолжительность жизни
+  life_span?: string; //продолжительность жизни
   weight?: CatWeight; //вес кг
   wikipedia_url?: string; //ссылка на вики
   adaptability?: number;

@@ -11,14 +11,7 @@ describe('Card', () => {
     const onClick = vi.fn();
 
     const { getByText } = render(
-      <Card
-        key={id}
-        id={id}
-        name={name}
-        temperament={temperament}
-        life_span={'test'}
-        onClick={onClick}
-      />
+      <Card key={id} id={id} name={name} temperament={temperament} onClick={onClick} />
     );
     const nameElement = getByText(/test name/i);
     expect(nameElement).toBeInTheDocument();
