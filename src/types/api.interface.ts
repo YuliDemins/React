@@ -12,14 +12,14 @@ export interface CatWeight {
 
 export interface ICat {
   id: string;
-  name: string; //название
-  origin?: string; //страна
-  description?: string; //описание
-  temperament: string; //описание характера
+  name: string;
+  origin?: string;
+  description?: string;
+  temperament: string;
   image?: CatImage;
-  life_span?: string; //продолжительность жизни
-  weight?: CatWeight; //вес кг
-  wikipedia_url?: string; //ссылка на вики
+  life_span?: string;
+  weight?: CatWeight;
+  wikipedia_url?: string;
   adaptability?: number;
   affection_level?: number;
   alt_names?: string;

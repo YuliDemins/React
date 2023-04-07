@@ -7,7 +7,6 @@ import { Search } from '../../components/search/Search';
 import './home.css';
 import { Preloader } from '../../components/preloader/Preloader';
 
-// const baseURL = 'https://api.thecatapi.com/v1/breeds?api_key='; //вывести породы
 const baseURL = 'https://api.thecatapi.com/v1/breeds';
 const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
 
@@ -16,7 +15,7 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const [catId, setCatId] = useState<string>('');
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(localStorage.getItem('search') || '');
 
   const URL = query ? `${baseURL}/search?q=${query}` : `${baseURL}?api_key=${key}`;
 
@@ -41,6 +40,7 @@ export const Home = () => {
   return (
     <>
       <Search setQuery={(value) => setQuery(value)} />
+      <h1 className="main-title">Cats API</h1>
       {isLoading ? (
         <Preloader />
       ) : (

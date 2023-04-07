@@ -20,7 +20,7 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.title}>{title}</h2>
       <Nav />
     </header>
   );
