@@ -3,18 +3,21 @@ import { describe, vi } from 'vitest';
 import { Card } from './Card';
 
 describe('Card', () => {
-  test('render name and temperament in card', () => {
-    const id = 'test';
-    const name = 'Test name';
-    const temperament = 'Test temperament';
+  test('render name and temperament in card', async () => {
     const onClick = vi.fn();
-
-    const { getByText } = render(
-      <Card key={id} id={id} name={name} temperament={temperament} onClick={onClick} />
+    const { findByText } = render(
+      <Card
+        key={'abys'}
+        id={'abys'}
+        name={'abbysinian'}
+        temperament={'Active, Energetic, Independent, Intelligent, Gentle'}
+        onClick={onClick}
+      />
     );
-    const nameElement = getByText(/test name/i);
-    expect(nameElement).toBeInTheDocument();
-    const temperamentElement = getByText(/test temperament/i);
-    expect(temperamentElement).toBeInTheDocument();
+
+    expect(await findByText(/abbysinian/i)).toBeInTheDocument();
+    expect(
+      await findByText(/Active, Energetic, Independent, Intelligent, Gentle/i)
+    ).toBeInTheDocument();
   });
 });

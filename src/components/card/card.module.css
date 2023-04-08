@@ -45,3 +45,11 @@ color: rgb(249,148,2);
   font-size: 14px;
   color: rgb(25, 42, 54);
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1.5/1;
+}

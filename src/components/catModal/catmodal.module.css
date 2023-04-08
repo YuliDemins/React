@@ -102,4 +102,9 @@
 
 .error{
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1.5/1;
 }
