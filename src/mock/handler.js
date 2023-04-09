@@ -82,14 +82,14 @@ export const handlers = [
       ])
     );
   }),
-  // rest.get(`https://api.thecatapi.com/v1/images/search?breed_id=abys&limit=1`, (req, res, ctx) => {
-  //   return res(
-  //     ctx.status(200),
-  //     ctx.json([
-  //       {
-  //         url: 'GgGggg6',
-  //       },
-  //     ])
-  //   );
-  // }),
+  rest.get(`https://api.thecatapi.com/v1/images/search?breed_id=abys&limit=1`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          url: 'GgGggg6',
+        },
+      ])
+    );
+  }),
 ];
