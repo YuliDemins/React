@@ -1,5 +1,5 @@
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
-import { CatBreed } from '../../types/api.interface';
+import { CatBreed, CatImage } from '../../types/api.interface';
 import axios from 'axios';
 import styles from './catmodal.module.css';
 import { Preloader } from '../preloader/Preloader';
@@ -12,7 +12,8 @@ type CatModalProp = {
 export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [breedImage, setBreedImage] = useState('');
-  const baseURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`; //вывести породы
+
+  const breedURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`;
   const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
   const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
 
@@ -26,14 +27,14 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   const [cat, setCat] = useState<CatBreed>();
 
   useEffect(() => {
-    axios.get(`${baseURL}${key}`).then((res) => {
+    axios.get<CatBreed>(`${breedURL}${key}`).then((res) => {
       setCat(res.data);
       setIsLoading(false);
     });
-  }, [baseURL]);
+  }, [breedURL]);
 
   useEffect(() => {
-    axios.get(`${imageURL}${id}&limit=1`).then((res) => {
+    axios.get<CatImage[]>(`${imageURL}${id}&limit=1`).then((res) => {
       if (!res.data.length) return;
       else setBreedImage(res.data[0].url);
       setIsLoading(false);

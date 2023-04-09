@@ -21,7 +21,7 @@ export const Home = () => {
 
   useEffect(() => {
     axios
-      .get(URL, {
+      .get<ICat[]>(URL, {
         headers: {
           'x-api-key': key,
         },

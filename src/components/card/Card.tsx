@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
-import { ICat } from '../../types/api.interface';
+import { CatImage, ICat } from '../../types/api.interface';
 import { Preloader } from '../preloader/Preloader';
 import styles from './card.module.css';
 
@@ -16,7 +16,7 @@ export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => 
 
   useEffect(() => {
     try {
-      axios.get(`${imageURL}${id}&limit=1`).then((res) => {
+      axios.get<CatImage[]>(`${imageURL}${id}&limit=1`).then((res) => {
         if (!res.data.length) {
           setIsLoading(false);
           setBreedImage('');
