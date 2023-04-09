@@ -15,17 +15,18 @@ export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => 
   const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
 
   useEffect(() => {
-    try {
-      axios.get<CatImage[]>(`${imageURL}${id}&limit=1`).then((res) => {
+    axios
+      .get<CatImage[]>(`${imageURL}${id}&limit=1`)
+      .then((res) => {
         if (!res.data.length) {
           setIsLoading(false);
           setBreedImage('');
         } else setBreedImage(res.data[0].url);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error:', error);
       });
-    } catch (error) {
-      console.log('Error:', error);
-    }
   }, [id]);
 
   return (

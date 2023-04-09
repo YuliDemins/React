@@ -27,26 +27,28 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
   const [cat, setCat] = useState<CatBreed>();
 
   useEffect(() => {
-    try {
-      axios.get<CatBreed>(`${breedURL}${key}`).then((res) => {
+    axios
+      .get<CatBreed>(`${breedURL}${key}`)
+      .then((res) => {
         setCat(res.data);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error:', error);
       });
-    } catch (error) {
-      console.log('Error:', error);
-    }
   }, [breedURL]);
 
   useEffect(() => {
-    try {
-      axios.get<CatImage[]>(`${imageURL}${id}&limit=1`).then((res) => {
+    axios
+      .get<CatImage[]>(`${imageURL}${id}&limit=1`)
+      .then((res) => {
         if (!res.data.length) return;
         else setBreedImage(res.data[0].url);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error:', error);
       });
-    } catch (error) {
-      console.log('Error:', error);
-    }
   }, [id]);
 
   return (

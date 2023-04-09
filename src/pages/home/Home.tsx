@@ -20,20 +20,19 @@ export const Home = () => {
   const URL = query ? `${baseURL}/search?q=${query}` : `${baseURL}?api_key=${key}`;
 
   useEffect(() => {
-    try {
-      axios
-        .get<ICat[]>(URL, {
-          headers: {
-            'x-api-key': key,
-          },
-        })
-        .then((res) => {
-          setCats(res.data);
-          setIsLoading(false);
-        });
-    } catch (error) {
-      console.log('Error:', error);
-    }
+    axios
+      .get<ICat[]>(URL, {
+        headers: {
+          'x-api-key': key,
+        },
+      })
+      .then((res) => {
+        setCats(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
   }, [query, URL]);
 
   const handleClick = (id: string) => {
