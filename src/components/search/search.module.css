@@ -5,12 +5,11 @@
   margin: 1rem auto 0;
 }
 
-.label-search{
+.label-search {
   position: relative;
   width: 500px;
   max-width: 500px;
   margin-right: 0.5rem;
-  
 }
 
 .input-search {
