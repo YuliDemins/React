@@ -3,53 +3,44 @@ import { CatBreed, CatImage } from '../../types/api.interface';
 import axios from 'axios';
 import styles from './catmodal.module.css';
 import { Preloader } from '../preloader/Preloader';
+import { useGetBreedsQuery, useGetCardQuery, useGetImageQuery } from '../../store/api';
+import { ImageCat } from '../imageCat/ImageCat';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { useTypedSelector, useAppDispatch } from '../../hooks/hooks';
+import { setId, setVisibleModal } from '../../store/idSlice';
 
-type CatModalProp = {
-  id: string;
-  setVisibleModal: (value: boolean) => void;
-};
+// const breedURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`;
+// const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
+// const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
+// type Prop = {
+//   id: string;
+// };
 
-export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [breedImage, setBreedImage] = useState('');
+export const CatsModal: FC = () => {
+  const dispatch = useAppDispatch();
+  const { id, visibleModal } = useTypedSelector((state: RootState) => state.IdSlice);
+  const { isLoading, data, error } = useGetCardQuery(id);
+  console.log('modal', id);
+  // const [sourse, setSourse] = useState('');
+  // useEffect (()=> {
+  //   if (data) setSourse(data[0].url);
+  // }, [id])
+  
 
-  const breedURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`;
-  const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
-  const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
+  const handleClick = () => {
+    dispatch(setVisibleModal(false));
+    // dispatch(setId(''));
+  };
 
-  const handleClick = () => setVisibleModal(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleOverlayClick = (event: MouseEvent) => {
-    if (overlayRef.current == event.target) setVisibleModal(false);
+    if (overlayRef.current == event.target) {
+      dispatch(setVisibleModal(false));
+      // dispatch(setId(''));
+    }
   };
-
-  const [cat, setCat] = useState<CatBreed>();
-
-  useEffect(() => {
-    axios
-      .get<CatBreed>(`${breedURL}${key}`)
-      .then((res) => {
-        setCat(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  }, [breedURL]);
-
-  useEffect(() => {
-    axios
-      .get<CatImage[]>(`${imageURL}${id}&limit=1`)
-      .then((res) => {
-        if (!res.data.length) return;
-        else setBreedImage(res.data[0].url);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  }, [id]);
 
   return (
     <div className={styles.overlay} ref={overlayRef} onClick={handleOverlayClick}>
@@ -62,19 +53,13 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
             <Preloader />
           ) : (
             <>
-              <div className={styles.image}>
-                {breedImage ? (
-                  <img src={breedImage} alt={cat?.name} />
-                ) : (
-                  <span className={styles.error}>картинка не найдена</span>
-                )}
-              </div>
+              <ImageCat />
               <div className={styles.container}>
-                <div className={styles.name}>{cat?.name}</div>
-                <div className={styles.description}>{cat?.description}</div>
-                <div className={styles.origin}>{cat?.origin}</div>
-                <div className={styles.temperament}>{cat?.temperament}</div>
-                <div className={styles.life}>{cat?.life_span} average life span</div>
+                <div className={styles.name}>{data?.name}</div>
+                <div className={styles.description}>{data?.description}</div>
+                <div className={styles.origin}>{data?.origin}</div>
+                <div className={styles.temperament}>{data?.temperament}</div>
+                <div className={styles.life}>{data?.life_span} average life span</div>
               </div>
             </>
           )}

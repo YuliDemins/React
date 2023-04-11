@@ -6,38 +6,28 @@ import { CatsModal } from '../../components/catModal/CatsModal';
 import { Search } from '../../components/search/Search';
 import './home.css';
 import { Preloader } from '../../components/preloader/Preloader';
+import { useGetBreedsQuery } from '../../store/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { setId, setVisibleModal } from '../../store/idSlice';
+import { useTypedSelector, useAppDispatch } from '../../hooks/hooks';
+import { RootState } from '../../store/store';
 
-const baseURL = 'https://api.thecatapi.com/v1/breeds';
-const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
+// const baseURL = 'https://api.thecatapi.com/v1/breeds';
+// const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
 
 export const Home = () => {
-  const [cats, setCats] = useState<ICat[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [visibleModal, setVisibleModal] = useState<boolean>(false);
-  const [catId, setCatId] = useState<string>('');
+  const dispatch = useAppDispatch();
+  // const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  const visibleModal = useTypedSelector((state: RootState) => state.IdSlice.visibleModal);
+  // const [catId, setCatId] = useState<string>('');
   const [query, setQuery] = useState<string>(localStorage.getItem('search') || '');
 
-  const URL = query ? `${baseURL}/search?q=${query}` : `${baseURL}?api_key=${key}`;
+  const { isLoading, data, error } = useGetBreedsQuery(query);
 
-  useEffect(() => {
-    axios
-      .get<ICat[]>(URL, {
-        headers: {
-          'x-api-key': key,
-        },
-      })
-      .then((res) => {
-        setCats(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  }, [query, URL]);
-
+  console.log('Cards', data);
   const handleClick = (id: string) => {
-    setCatId(id);
-    setVisibleModal(!visibleModal);
+    dispatch(setVisibleModal(true));
+    dispatch(setId(id));
   };
 
   return (
@@ -48,13 +38,17 @@ export const Home = () => {
         <Preloader />
       ) : (
         <div className="cards">
-          {cats.map((cat: ICat) => {
-            return <Card key={cat.id} {...cat} onClick={() => handleClick(cat.id)} />;
-          })}
+          {data ? (
+            data.map((cat: ICat) => {
+              return <Card key={cat.id} {...cat} onClick={() => handleClick(cat.id)} />;
+            })
+          ) : (
+            <span className="error">не найдено</span>
+          )}
         </div>
       )}
 
-      {visibleModal && <CatsModal id={catId} setVisibleModal={setVisibleModal} />}
+      {visibleModal && <CatsModal />}
     </>
   );
 };
