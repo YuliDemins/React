@@ -10,8 +10,7 @@ export const Cards = () => {
   const dispatch = useAppDispatch();
   const { value } = useTypedSelector((state: RootState) => state.filter);
 
-  const { isLoading, data, error } = useGetBreedsQuery(value);
-  // const { isLoding, data } = useGetSearchBreedsQuery(query);
+  const { isLoading, data } = useGetBreedsQuery(value);
 
   const handleClick = (id: string) => {
     dispatch(setVisibleModal(true));

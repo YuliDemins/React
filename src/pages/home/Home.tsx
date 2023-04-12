@@ -21,8 +21,8 @@ export const Home = () => {
     <>
       <Search />
       <h1 className="main-title">Cats API</h1>
-      <Cards />
-      {visibleModal && <CatsModal />}
+      {/* <Cards /> */}
+      {/* {visibleModal && <CatsModal />} */}
     </>
   );
 };
