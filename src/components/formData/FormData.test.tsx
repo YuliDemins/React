@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test, vi } from 'vitest';
+import { describe, test } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { FormData } from './FormData';
 import { Countries } from '../../types/types';
+import { Provider } from 'react-redux';
+import store from '../../store/store';
 
 describe('FormData', () => {
   beforeAll(() => {
-    const showCardsValues = vi.fn();
-    const setShowModal = vi.fn();
-    render(<FormData showCardsValues={showCardsValues} showModal={setShowModal} />);
+    render(
+      <Provider store={store}>
+        <FormData />
+      </Provider>
+    );
   });
   test('check FormData', async () => {
     expect(screen.queryByText(/error/i)).not.toBeInTheDocument();

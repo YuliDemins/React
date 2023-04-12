@@ -17,7 +17,7 @@ export const Form = () => {
     return () => {
       clearTimeout(timerId);
     };
-  }, [isShowModal]);
+  }, [dispatch, isShowModal]);
 
   return (
     <>

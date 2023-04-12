@@ -19,7 +19,6 @@ export const FormData: FC = () => {
 
   const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
     dispatch(setShowModal(true));
-    // showModal(true);
 
     const cardValues: IFormData = {
       id: data.name,
