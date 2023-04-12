@@ -13,7 +13,7 @@ export const api = createApi({
   }),
   endpoints: (builder) => ({
     getBreeds: builder.query<ICat[], string>({
-      query: (query) => (query ? `/breeds/search?q=${query}` : `/breeds?api_key=${key}`),
+      query: (value) => (value ? `/breeds/search?q=${value}` : `/breeds?api_key=${key}`),
       providesTags: () => [
         {
           type: 'Breeds',

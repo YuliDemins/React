@@ -16,7 +16,7 @@ export interface ICat {
   origin?: string;
   description?: string;
   temperament: string;
-  image?: CatImage;
+  image: CatImage;
   life_span?: string;
   weight?: CatWeight;
   wikipedia_url?: string;

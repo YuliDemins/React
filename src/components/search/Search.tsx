@@ -1,23 +1,21 @@
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
+import { setValueSearch } from '../../store/filterSlice';
 
 import styles from './search.module.css';
 
-type SearchProp = {
-  setQuery: (value: string) => void;
-};
-
-export const Search: FC<SearchProp> = ({ setQuery }) => {
-  const LsSearch = localStorage.getItem('search');
-  const [value, setValue] = useState<string>(LsSearch || '');
+export const Search: FC = () => {
+  const dispatch = useAppDispatch();
+  const { value } = useTypedSelector((state) => state.filter);
+  const [query, setQuery] = useState<string>(value);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setQuery(event.target.value);
   };
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setQuery(value);
-    localStorage.setItem('search', value);
+    dispatch(setValueSearch(query));
   };
 
   return (
@@ -29,7 +27,7 @@ export const Search: FC<SearchProp> = ({ setQuery }) => {
           className={styles['input-search']}
           id="search"
           onChange={(e) => handleChange(e)}
-          value={value}
+          value={query}
         />
       </label>
       <button className={styles['button-search']} onClick={(e) => handleClick(e)}>
