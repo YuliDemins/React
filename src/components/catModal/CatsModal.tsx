@@ -44,7 +44,6 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
       .then((res) => {
         if (!res.data.length) return;
         else setBreedImage(res.data[0].url);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.log('Error:', error);

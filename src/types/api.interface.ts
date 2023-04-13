@@ -39,7 +39,7 @@ export interface ICat {
   lap?: number;
   natural?: number;
   rare?: number;
-  reference_image_id?: string;
+  reference_image_id: string;
   rex?: number;
   shedding_level?: number;
   short_legs?: number;

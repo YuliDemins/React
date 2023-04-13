@@ -16,6 +16,7 @@ export const Home = () => {
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const [catId, setCatId] = useState<string>('');
   const [query, setQuery] = useState<string>(localStorage.getItem('search') || '');
+  const [errorText, setErrorText] = useState<string>('');
 
   const URL = query ? `${baseURL}/search?q=${query}` : `${baseURL}?api_key=${key}`;
 
@@ -32,8 +33,10 @@ export const Home = () => {
       })
       .catch((error) => {
         console.log('Error:', error);
+        setErrorText(`Возникла ошибка ${error.message}`);
+        setIsLoading(false);
       });
-  }, [query, URL]);
+  }, [URL]);
 
   const handleClick = (id: string) => {
     setCatId(id);
@@ -49,11 +52,15 @@ export const Home = () => {
       ) : (
         <div className="cards">
           {cats.map((cat: ICat) => {
-            return <Card key={cat.id} {...cat} onClick={() => handleClick(cat.id)} />;
+            return (
+              <div key={cat.id} className="card" onClick={() => handleClick(cat.id)}>
+                <Card {...cat} />
+              </div>
+            );
           })}
         </div>
       )}
-
+      {errorText && <h3 className="error">{errorText}</h3>}
       {visibleModal && <CatsModal id={catId} setVisibleModal={setVisibleModal} />}
     </>
   );

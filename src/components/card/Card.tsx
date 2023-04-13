@@ -4,15 +4,12 @@ import { CatImage, ICat } from '../../types/api.interface';
 import { Preloader } from '../preloader/Preloader';
 import styles from './card.module.css';
 
-type CatProp = {
-  onClick: () => void;
-};
-
-export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => {
+export const Card: FC<ICat> = ({ id, name, temperament, reference_image_id }) => {
   const [breedImage, setBreedImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 
   const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
+  // const imageURL = 'https://cdn2.thecatapi.com/images/';
 
   useEffect(() => {
     axios
@@ -21,8 +18,10 @@ export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => 
         if (!res.data.length) {
           setIsLoading(false);
           setBreedImage('');
-        } else setBreedImage(res.data[0].url);
-        setIsLoading(false);
+        } else {
+          setBreedImage(res.data[0].url);
+          setIsLoading(false);
+        }
       })
       .catch((error) => {
         console.log('Error:', error);
@@ -30,7 +29,7 @@ export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => 
   }, [id]);
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <>
       {isLoading ? (
         <Preloader />
       ) : (
@@ -46,6 +45,17 @@ export const Card: FC<ICat & CatProp> = ({ id, name, temperament, onClick }) => 
         <div className={styles.name}>{name}</div>
         <div className={styles.temperament}>{temperament}</div>
       </div>
-    </div>
+    </>
   );
+  // return (
+  //   <>
+  //       <div className={styles.image}>
+  //         <img src={`${imageURL}${reference_image_id}.jpg`} alt={id} />
+  //       </div>
+  //     <div className={styles.info}>
+  //       <div className={styles.name}>{name}</div>
+  //       <div className={styles.temperament}>{temperament}</div>
+  //     </div>
+  //   </>
+  // );
 };

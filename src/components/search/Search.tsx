@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import styles from './search.module.css';
 
@@ -7,15 +7,13 @@ type SearchProp = {
 };
 
 export const Search: FC<SearchProp> = ({ setQuery }) => {
-  const LsSearch = localStorage.getItem('search');
-  const [value, setValue] = useState<string>(LsSearch || '');
+  const [value, setValue] = useState<string>(localStorage.getItem('search') || '');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleClick = () => {
     setQuery(value);
     localStorage.setItem('search', value);
   };
@@ -32,7 +30,7 @@ export const Search: FC<SearchProp> = ({ setQuery }) => {
           value={value}
         />
       </label>
-      <button className={styles['button-search']} onClick={(e) => handleClick(e)}>
+      <button className={styles['button-search']} onClick={handleClick}>
         Search
       </button>
     </div>

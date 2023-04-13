@@ -1,17 +1,16 @@
 import { render } from '@testing-library/react';
-import { describe, vi } from 'vitest';
+import { describe } from 'vitest';
 import { Card } from './Card';
 
 describe('Card', () => {
   test('render name and temperament in card', async () => {
-    const onClick = vi.fn();
     const { findByText } = render(
       <Card
         key={'abys'}
         id={'abys'}
         name={'abbysinian'}
+        reference_image_id={'0SxW2SQ_S'}
         temperament={'Active, Energetic, Independent, Intelligent, Gentle'}
-        onClick={onClick}
       />
     );
 

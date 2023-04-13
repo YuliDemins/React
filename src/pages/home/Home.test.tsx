@@ -4,8 +4,8 @@ import '@testing-library/jest-dom';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './Home';
 
-describe('Home', async () => {
-  test('renders Home route', () => {
+describe('Home', () => {
+  test('renders Home route', async () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <Routes>
