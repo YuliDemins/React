@@ -1,28 +1,27 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
+import { describe, test } from 'vitest';
 import { FormValue } from './FormValue';
 
 describe('Home', () => {
-  it('render FormValue', () => {
-    const id = 12;
-    const imageValue = 'test.png';
-    const nameValue = 'Test';
-    const countryValue = 'Spain';
-    const birthdayValue = '12.03.2022';
-    const genderValue = 'male';
+  test('render FormValue', () => {
+    const id = '12';
+    const image = 'test.png';
+    const name = 'Test';
+    const country = 'Spain';
+    const birthday = '12.03.2022';
+    const gender = 'male';
     const agree = true;
 
     render(
       <FormValue
         key={1}
-        values={{
+        data={{
           id,
-          imageValue,
-          nameValue,
-          countryValue,
-          birthdayValue,
-          genderValue,
+          image,
+          name,
+          country,
+          birthday,
+          gender,
           agree,
         }}
       />

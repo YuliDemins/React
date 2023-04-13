@@ -1,33 +1,17 @@
-import { Component } from 'react';
+import { FC } from 'react';
+import { IFormData } from '../../types/types';
 
-import './formvalue.css';
+import styles from './formvalue.module.css';
 
-type FormValueProp = {
-  values: {
-    id: number;
-    imageValue: string;
-    nameValue: string;
-    countryValue: string;
-    birthdayValue: string;
-    genderValue: string;
-    agree: boolean;
-  };
+export const FormValue: FC<IFormData> = ({ id, image, name, country, birthday, gender, agree }) => {
+  return (
+    <div className={styles.value} id={id}>
+      <img className={styles.image} src={image} alt={name} />
+      <div className={styles['value-item']}>Name: {name}</div>
+      <div className={styles['value-item']}>Country: {country}</div>
+      <div className={styles['value-item']}>Birthday: {birthday}</div>
+      <div className={styles['value-item']}>Gender: {gender}</div>
+      <div className={styles['value-item']}>Agree: {agree ? 'yes' : 'no'}</div>
+    </div>
+  );
 };
-class FormValue extends Component<FormValueProp> {
-  render() {
-    const { id, imageValue, nameValue, countryValue, birthdayValue, genderValue, agree } =
-      this.props.values;
-    return (
-      <div className="value" id={id.toString()}>
-        <img className="image" src={imageValue} alt="" />
-        <div className="valueitem">Name: {nameValue}</div>
-        <div className="valueitem">Country: {countryValue}</div>
-        <div className="valueitem">Birthday: {birthdayValue}</div>
-        <div className="valueitem">Gender: {genderValue}</div>
-        <div className="valueitem">Agree: {agree ? 'yes' : 'no'}</div>
-      </div>
-    );
-  }
-}
-
-export { FormValue };

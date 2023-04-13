@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import '@testing-library/jest-dom';
 import { Search } from './Search';
 
-describe('Home', () => {
-  it('renders Search', () => {
+describe('search', () => {
+  test('renders Search', () => {
     render(<Search />);
-    const input = screen.getByRole('textbox');
-    const button = screen.getByLabelText('search');
+    const input = screen.getByRole<HTMLInputElement>('textbox');
+    const button = screen.getByLabelText<HTMLButtonElement>('search');
     expect(input).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
