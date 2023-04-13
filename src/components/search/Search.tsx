@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
 import { setValueSearch } from '../../store/filterSlice';
 
@@ -13,8 +13,7 @@ export const Search: FC = () => {
     setQuery(event.target.value);
   };
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleClick = () => {
     dispatch(setValueSearch(query));
   };
 
@@ -30,7 +29,7 @@ export const Search: FC = () => {
           value={query}
         />
       </label>
-      <button className={styles['button-search']} onClick={(e) => handleClick(e)}>
+      <button className={styles['button-search']} onClick={handleClick}>
         Search
       </button>
     </div>

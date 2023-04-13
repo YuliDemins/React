@@ -7,13 +7,9 @@ import { RootState } from '../../store/store';
 import { useTypedSelector, useAppDispatch } from '../../hooks/hooks';
 import { setVisibleModal } from '../../store/idSlice';
 
-// const breedURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`;
-// const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
-// const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';;
-
 export const CatsModal: FC = () => {
   const dispatch = useAppDispatch();
-  const { idState, visibleModal } = useTypedSelector((state: RootState) => state.IdSlice);
+  const { idState } = useTypedSelector((state: RootState) => state.IdSlice);
   const { isLoading, data } = useGetCardQuery(idState);
 
   const handleClick = () => {
