@@ -6,8 +6,8 @@ import { Home } from './Home';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
 
-describe('Home', async () => {
-  test('renders Home route', () => {
+describe('Home', () => {
+  test('renders Home route', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>
