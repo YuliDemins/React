@@ -9,7 +9,7 @@ import { InputFile } from './InputFile';
 import { InputGender } from './InputGender';
 import { InputAgree } from './InputAgree';
 import { useAppDispatch } from '../../hooks/hooks';
-import { addValue, setShowModal } from '../../store/formListSlice';
+import { addValue, showModal } from '../../store/formListSlice';
 
 export const FormData: FC = () => {
   const methods = useForm<IFormValues>();
@@ -18,7 +18,7 @@ export const FormData: FC = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
-    dispatch(setShowModal(true));
+    dispatch(showModal(true));
 
     const cardValues: IFormData = {
       id: data.name,

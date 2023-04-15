@@ -6,7 +6,7 @@ import { RootState } from '../../store/store';
 import { Cards } from '../../components/Cards/Cards';
 
 export const Home = () => {
-  const visibleModal = useTypedSelector((state: RootState) => state.IdSlice.visibleModal);
+  const visibleModal = useTypedSelector((state: RootState) => state.cardSlice.visibleModal);
 
   return (
     <>

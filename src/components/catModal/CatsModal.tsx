@@ -5,22 +5,22 @@ import { useGetCardQuery } from '../../store/api';
 import { ImageCat } from '../imageCat/ImageCat';
 import { RootState } from '../../store/store';
 import { useTypedSelector, useAppDispatch } from '../../hooks/hooks';
-import { setVisibleModal } from '../../store/idSlice';
+import { openModal } from '../../store/cardSlice';
 
 export const CatsModal: FC = () => {
   const dispatch = useAppDispatch();
-  const { idState } = useTypedSelector((state: RootState) => state.IdSlice);
+  const { idState } = useTypedSelector((state: RootState) => state.cardSlice);
   const { isLoading, data } = useGetCardQuery(idState);
 
   const handleClick = () => {
-    dispatch(setVisibleModal(false));
+    dispatch(openModal(false));
   };
 
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleOverlayClick = (event: MouseEvent) => {
     if (overlayRef.current == event.target) {
-      dispatch(setVisibleModal(false));
+      dispatch(openModal(false));
     }
   };
 

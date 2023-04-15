@@ -18,12 +18,12 @@ const formListSlice = createSlice({
     addValue: (state, action: PayloadAction<IFormData>) => {
       state.list.push(action.payload);
     },
-    setShowModal: (state, action: PayloadAction<boolean>) => {
+    showModal: (state, action: PayloadAction<boolean>) => {
       state.isShowModal = action.payload;
     },
   },
 });
 
-export const { addValue, setShowModal } = formListSlice.actions;
+export const { addValue, showModal } = formListSlice.actions;
 
 export default formListSlice.reducer;

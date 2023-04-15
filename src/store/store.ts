@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { api } from './api';
-import filterSliceReducer from './filterSlice';
-import IdSliceReducer from './idSlice';
+// import filterSliceReducer from './filterSlice';
+import cardSliceReducer from './cardSlice';
 import formListSliceReducer from './formListSlice';
 
 const store = configureStore({
   reducer: {
-    IdSlice: IdSliceReducer,
-    filter: filterSliceReducer,
+    cardSlice: cardSliceReducer,
+    // filter: filterSliceReducer,
     formList: formListSliceReducer,
     [api.reducerPath]: api.reducer,
   },

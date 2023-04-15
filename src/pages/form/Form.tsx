@@ -3,7 +3,7 @@ import { FormData } from '../../components/formData/FormData';
 import { Modal } from '../../components/modal/Modal';
 import { ValueList } from '../../components/valueList/ValueList';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
-import { setShowModal } from '../../store/formListSlice';
+import { showModal } from '../../store/formListSlice';
 import { RootState } from '../../store/store';
 
 export const Form = () => {
@@ -12,12 +12,12 @@ export const Form = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      dispatch(setShowModal(false));
+      dispatch(showModal(false));
     }, 2000);
     return () => {
       clearTimeout(timerId);
     };
-  }, [dispatch, isShowModal]);
+  }, [isShowModal]);
 
   return (
     <>

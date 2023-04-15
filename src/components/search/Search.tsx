@@ -1,12 +1,12 @@
 import { ChangeEvent, FC, useState } from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
-import { setValueSearch } from '../../store/filterSlice';
+import { setValueSearch } from '../../store/cardSlice';
 
 import styles from './search.module.css';
 
 export const Search: FC = () => {
   const dispatch = useAppDispatch();
-  const { value } = useTypedSelector((state) => state.filter);
+  const { value } = useTypedSelector((state) => state.cardSlice);
   const [query, setQuery] = useState<string>(value);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
