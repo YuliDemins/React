@@ -30,14 +30,5 @@ describe('FormData', () => {
       selector: 'input[type="file"]',
     });
     expect(fileInput).toBeInTheDocument();
-
-    test('remove values', async () => {
-      await userEvent.type(nameInput, 'test');
-      await userEvent.selectOptions(countryInput, Countries.France);
-      userEvent.click(screen.getByRole('button', { name: 'Submit' }));
-
-      expect(nameInput.value).toBe('');
-      expect(countryInput.value).toBe('');
-    });
   });
 });

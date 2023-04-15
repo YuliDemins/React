@@ -1,29 +1,20 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import styles from './search.module.css';
 
-export const Search = () => {
-  const LsSearch = localStorage.getItem('search');
-  const [value, setValue] = useState<string>(LsSearch || '');
+type SearchProp = {
+  setQuery: (value: string) => void;
+};
 
-  const searchRef = useRef<string>();
-
-  useEffect(() => {
-    searchRef.current = value;
-  }, [value]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('search', searchRef.current || '');
-    };
-  }, []);
+export const Search: FC<SearchProp> = ({ setQuery }) => {
+  const [value, setValue] = useState<string>(localStorage.getItem('search') || '');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleClick = () => {
+    setQuery(value);
     localStorage.setItem('search', value);
   };
 
@@ -35,7 +26,7 @@ export const Search = () => {
           type="text"
           className={styles['input-search']}
           id="search"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           value={value}
         />
       </label>

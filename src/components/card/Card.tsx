@@ -1,41 +1,61 @@
-import { FC } from 'react';
-import { SVGComponent } from '../svgComponent/svgComponent';
-
+import axios from 'axios';
+import { FC, useEffect, useState } from 'react';
+import { CatImage, ICat } from '../../types/api.interface';
+import { Preloader } from '../preloader/Preloader';
 import styles from './card.module.css';
-import like from '/src/assets/svg/favorite.svg';
 
-export interface CardProps {
-  id: number;
-  src: string;
-  title: string;
-  author: string;
-  likes: number;
-  show: number;
-}
-export const Card: FC<CardProps> = ({ id, src, title, author, likes, show }) => {
+export const Card: FC<ICat> = ({ id, name, temperament, reference_image_id }) => {
+  const [breedImage, setBreedImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
+  // const imageURL = 'https://cdn2.thecatapi.com/images/';
+
+  useEffect(() => {
+    axios
+      .get<CatImage[]>(`${imageURL}${id}&limit=1`)
+      .then((res) => {
+        if (!res.data.length) {
+          setIsLoading(false);
+          setBreedImage('');
+        } else {
+          setBreedImage(res.data[0].url);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
+  }, [id]);
+
   return (
-    <div className={styles.card}>
-      <div className={styles.image}>
-        <img src={src} alt={title} />
-      </div>
+    <>
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <div className={styles.image}>
+          {breedImage ? (
+            <img src={breedImage} alt={id} />
+          ) : (
+            <span className={styles.error}>картинка не найдена</span>
+          )}
+        </div>
+      )}
       <div className={styles.info}>
-        <div className={styles.wrapper}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.author}>{author}</div>
-        </div>
-        <div className={styles.stats}>
-          <div className={styles.likes}>
-            <div className={styles.favorite}>
-              <SVGComponent src={like} id={id} />
-            </div>
-            <span>{likes}</span>
-          </div>
-          <div className={styles.show}>
-            <div className={styles.vis} />
-            <div>{show}</div>
-          </div>
-        </div>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.temperament}>{temperament}</div>
       </div>
-    </div>
+    </>
   );
+  // return (
+  //   <>
+  //       <div className={styles.image}>
+  //         <img src={`${imageURL}${reference_image_id}.jpg`} alt={id} />
+  //       </div>
+  //     <div className={styles.info}>
+  //       <div className={styles.name}>{name}</div>
+  //       <div className={styles.temperament}>{temperament}</div>
+  //     </div>
+  //   </>
+  // );
 };
