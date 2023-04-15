@@ -12,12 +12,14 @@ export const Form = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      dispatch(showModal(false));
+      if (isShowModal) {
+        dispatch(showModal(false));
+      }
     }, 2000);
     return () => {
       clearTimeout(timerId);
     };
-  }, [isShowModal]);
+  }, [dispatch, isShowModal]);
 
   return (
     <>

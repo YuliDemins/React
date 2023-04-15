@@ -16,11 +16,9 @@ const cardSlice = createSlice({
   name: 'cardSlice',
   initialState,
   reducers: {
-    setId: (state, action: PayloadAction<string>) => {
-      state.idState = action.payload;
-    },
-    openModal: (state, action: PayloadAction<boolean>) => {
-      state.visibleModal = action.payload;
+    updateState: (state, action: PayloadAction<{ idState: string; visibleModal: boolean }>) => {
+      state.idState = action.payload.idState;
+      state.visibleModal = action.payload.visibleModal;
     },
     setValueSearch: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
@@ -28,6 +26,6 @@ const cardSlice = createSlice({
   },
 });
 
-export const { setId, openModal, setValueSearch } = cardSlice.actions;
+export const { updateState, setValueSearch } = cardSlice.actions;
 
 export default cardSlice.reducer;

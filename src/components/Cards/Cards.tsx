@@ -1,6 +1,6 @@
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
 import { useGetBreedsQuery } from '../../store/api';
-import { setId, openModal } from '../../store/cardSlice';
+import { updateState } from '../../store/cardSlice';
 import { RootState } from '../../store/store';
 import { ICat } from '../../types/api.interface';
 import { Card } from '../card/Card';
@@ -14,8 +14,7 @@ export const Cards = () => {
   const { isLoading, data } = useGetBreedsQuery(value);
 
   const handleClick = (id: string) => {
-    dispatch(openModal(true));
-    dispatch(setId(id));
+    dispatch(updateState({ idState: id, visibleModal: true }));
   };
 
   return isLoading ? (
