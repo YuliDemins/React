@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useState, KeyboardEvent } from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
 import { setValueSearch } from '../../store/cardSlice';
 
@@ -17,6 +17,12 @@ export const Search: FC = () => {
     dispatch(setValueSearch(query));
   };
 
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      dispatch(setValueSearch(query));
+    }
+  };
+
   return (
     <div className={styles['form-search']}>
       <label htmlFor="search" className={styles['label-search']}>
@@ -27,6 +33,7 @@ export const Search: FC = () => {
           id="search"
           onChange={(e) => handleChange(e)}
           value={query}
+          onKeyPress={handleKeyPress}
         />
       </label>
       <button className={styles['button-search']} onClick={handleClick}>
