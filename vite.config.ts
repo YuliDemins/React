@@ -16,6 +16,14 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text'],
       all: true,
+      include: ['src/**/*'],
+      exclude: [
+        'src/**/*d.ts',
+        'src/**/*.test.*',
+        'src/**/**interface.ts',
+        'src/entry-client.tsx',
+        'src/entry-server.tsx',
+      ],
     },
   },
 });
