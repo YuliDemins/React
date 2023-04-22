@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { ErrorName, IFormValues } from '../../types/types';
-import styles from './formdata.module.css';
+import './formdata.css';
 
 export const InputName = () => {
   const {
@@ -9,11 +9,11 @@ export const InputName = () => {
   } = useFormContext<IFormValues>();
 
   return (
-    <div className={styles.name}>
+    <div className={'form-name'}>
       <label>
         Name:
         <input
-          className={styles.input}
+          className={'form-input'}
           placeholder="Name"
           {...register('name', {
             required: ErrorName.field,
@@ -25,7 +25,7 @@ export const InputName = () => {
           })}
         />
       </label>
-      {errors.name && <span className={styles.error}>{errors.name.message}</span>}
+      {errors.name && <span className={'form-error'}>{errors.name.message}</span>}
     </div>
   );
 };

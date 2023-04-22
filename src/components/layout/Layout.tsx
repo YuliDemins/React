@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from '../header/Header';
 
-import styles from './layout.module.css';
+import './layout.css';
 
 export const Layout = () => {
   return (
     <>
       <Header />
-      <main className={styles.container}>
+      <main className={"layout-container"}>
         <Outlet />
       </main>
       <footer>2023</footer>

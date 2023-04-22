@@ -1,5 +1,5 @@
 import { FC, MouseEvent, useRef } from 'react';
-import styles from './catmodal.module.css';
+import './catmodal.css';
 import { Preloader } from '../preloader/Preloader';
 import { useGetCardQuery } from '../../store/api';
 import { ImageCat } from '../imageCat/ImageCat';
@@ -25,10 +25,10 @@ export const CatsModal: FC = () => {
   };
 
   return (
-    <div className={styles.overlay} ref={overlayRef} onClick={handleOverlayClick}>
-      <div className={styles.info}>
-        <div className={styles.modal}>
-          <button className={styles.exit} onClick={handleClick}>
+    <div className={'catmodal-overlay'} ref={overlayRef} onClick={handleOverlayClick}>
+      <div className={'catmodal-info'}>
+        <div className={'catmodal-modal'}>
+          <button className={'catmodal-exit'} onClick={handleClick}>
             &times;
           </button>
           {isLoading ? (
@@ -36,12 +36,12 @@ export const CatsModal: FC = () => {
           ) : (
             <>
               <ImageCat id={idState} />
-              <div className={styles.container}>
-                <div className={styles.name}>{data?.name}</div>
-                <div className={styles.description}>{data?.description}</div>
-                <div className={styles.origin}>{data?.origin}</div>
-                <div className={styles.temperament}>{data?.temperament}</div>
-                <div className={styles.life}>{data?.life_span} average life span</div>
+              <div className={'catmodal-container'}>
+                <div className={'catmodal-name'}>{data?.name}</div>
+                <div className={'catmodal-description'}>{data?.description}</div>
+                <div className={'catmodal-origin'}>{data?.origin}</div>
+                <div className={'catmodal-temperament'}>{data?.temperament}</div>
+                <div className={'catmodal-life'}>{data?.life_span} average life span</div>
               </div>
             </>
           )}

@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { ErrorName } from '../../types/types';
-import styles from './formdata.module.css';
+import './formdata.css';
 
 export const InputAgree = () => {
   const {
@@ -9,16 +9,16 @@ export const InputAgree = () => {
   } = useFormContext();
 
   return (
-    <div className={styles.checkbox}>
+    <div className={'form-checkbox'}>
       <label>
         <input
-          className={styles.agree}
+          className={'form-agree'}
           type="checkbox"
           {...register('agree', { required: true })}
         />
         agree
       </label>
-      {errors.agree && <span className={styles.error}>{ErrorName.agree}</span>}
+      {errors.agree && <span className={'form-error'}>{ErrorName.agree}</span>}
     </div>
   );
 };

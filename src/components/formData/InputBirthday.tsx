@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { ErrorName } from '../../types/types';
-import styles from './formdata.module.css';
+import './formdata.css';
 
 export const InputBirthday = () => {
   const {
@@ -9,11 +9,11 @@ export const InputBirthday = () => {
   } = useFormContext();
 
   return (
-    <div className={styles.birthday}>
+    <div className={'form-birthday'}>
       <label>
         birthday:
         <input
-          className={styles.input}
+          className={'form-input'}
           type="date"
           {...register('birthday', {
             required: true,
@@ -21,7 +21,7 @@ export const InputBirthday = () => {
           })}
         />
       </label>
-      {errors.birthday && <span className={styles.error}>{ErrorName.birthday}</span>}
+      {errors.birthday && <span className={'form-error'}>{ErrorName.birthday}</span>}
     </div>
   );
 };

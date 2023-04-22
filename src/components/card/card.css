@@ -7,7 +7,7 @@
   border-radius: 5px 5px 0px 0px;
 }
 
-.info {
+.cat-info {
   margin: 0.6rem;
   line-height: 1.5;
   display: flex;
@@ -15,19 +15,19 @@
   height: 100%;
 }
 
-.wrapper {
+.cat-wrapper {
   flex: 1 0 auto;
   margin-bottom: 0.7rem;
 }
 
-.name {
+.cat-name {
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 1rem;
   color: rgb(249, 148, 2);
 }
 
-.temperament {
+.cat-temperament {
   font-size: 14px;
   color: rgb(25, 42, 54);
 }

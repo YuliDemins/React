@@ -30,12 +30,12 @@ async function createServer() {
           pipe(res);
         },
         onAllReady() {
-          res.write(html[1]);
+          res.write(html[0] + html[1]);
           res.end();
         },
       });
     } catch (e) {
-      vite.ssrFixStacktrace(e);
+      vite.ssrFixStacktrace(e as Error);
       next(e);
     }
   });
