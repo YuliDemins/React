@@ -7,7 +7,7 @@ export const Layout = () => {
   return (
     <>
       <Header />
-      <main className={"layout-container"}>
+      <main className={'layout-container'}>
         <Outlet />
       </main>
       <footer>2023</footer>

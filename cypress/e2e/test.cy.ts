@@ -1,4 +1,7 @@
-import { ceil } from "cypress/types/lodash";
+/// <reference types="cypress" />
+// @ts-check
+// cypress/support/e2e.js
+import '@cypress/code-coverage/support';
 
 describe('Test pages', () => {
   it('Visit nav links', () => {
@@ -24,17 +27,14 @@ describe('Test pages', () => {
     cy.get('.button-search').click();
     cy.get('input[type="text"]').should('have.value', 'bengal');
   });
-  // it('open catModal', () => {
-  //   cy.visit('/');
-  //   cy.get('input[type="text"]').type('abbysnian');
-  //   cy.get('.button-search').click();
-  //   cy.get('.card').click();
-  //   cy.get('.catmodal-overlay').contains('.catmodal-info');
-  // });
   it('Form', () => {
     cy.visit('/form');
     cy.get('input[name="name"]').type('Yulia');
     cy.get('select').select('Russia');
-    cy.get('input[type="date"]').type('2000-01-01')
+    cy.get('input[type="date"]').type('2000-01-01');
+    // cy.get('input[type=file]').selectFile('src/assets/test.png', { force: true });
+    cy.get('input[type="radio"]').first().check();
+    cy.get('input[type="checkbox"]').check();
+    cy.get('button[type="submit"]').click();
   });
 })

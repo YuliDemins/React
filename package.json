@@ -17,7 +17,7 @@
     "deploy": "netlify deploy --prod",
     "test:cypress": "cypress open",
     "cy:run": "cypress run",
-    "cy:coverage": "nyc cypress run"
+    "cypress:coverage": "npm run cy:run -- --browser chrome --headless"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.4",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -68,29 +69,32 @@
     "vite": "^4.1.0",
     "vite-node": "^0.30.1",
     "vite-plugin-checker": "^0.5.6",
+    "vite-plugin-istanbul": "^4.0.1",
     "vitest": "^0.29.2"
   },
   "nyc": {
-    "include": [
-      "cypress/**/*"
-    ],
-    "exclude": [
-      "**/node_modules/**/*",
-      "**/*.spec.js"
-    ],
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
     "instrument": false,
     "sourceMap": false,
-    "cwd": ".",
-    "reporter": [
-      "html",
-      "text-summary"
+    "cwd": "cypress",
+    "exclude": [
+      "cypress/",
+      "node_modules/",
+      "assets/",
+      "dist/",
+      "src/tests/"
     ],
-    "all": true,
-    "cache": true,
-    "check-coverage": true,
-    "statements": 100,
-    "branches": 100,
-    "functions": 100,
-    "lines": 100
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "extension": [
+      ".tsx",
+      ".ts"
+    ],
+    "cache": false,
+    "parallel": false,
+    "check-coverage": true
   }
 }
