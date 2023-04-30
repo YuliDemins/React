@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "composite": true,
+    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "src", "server.ts"]
 }

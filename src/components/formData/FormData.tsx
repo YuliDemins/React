@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import styles from './formdata.module.css';
+import './formdata.css';
 import { IFormData, IFormValues } from '../../types/types';
 import { InputName } from './InputName';
 import { InputCountry } from './InputCountry';
@@ -10,6 +10,7 @@ import { InputGender } from './InputGender';
 import { InputAgree } from './InputAgree';
 import { useAppDispatch } from '../../hooks/hooks';
 import { addValue, showModal } from '../../store/formListSlice';
+import React from 'react';
 
 export const FormData: FC = () => {
   const methods = useForm<IFormValues>();
@@ -35,14 +36,14 @@ export const FormData: FC = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
+      <form className={'form'} onSubmit={methods.handleSubmit(onSubmit)}>
         <InputName />
         <InputCountry />
         <InputBirthday />
         <InputFile />
         <InputGender />
         <InputAgree />
-        <button type="submit" className={styles.submit}>
+        <button type="submit" className={'form-submit'}>
           Submit
         </button>
       </form>

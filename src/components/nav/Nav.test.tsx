@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { Nav } from './Nav';
+import React from 'react';
 
 describe('Nav', () => {
   test('Nav test', () => {

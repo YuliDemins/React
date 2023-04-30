@@ -3,6 +3,7 @@ import { describe, it } from 'vitest';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { NotFound } from './NotFound';
+import React from 'react';
 
 describe('Home', () => {
   it('renders Error route', () => {

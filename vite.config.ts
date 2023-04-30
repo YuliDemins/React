@@ -3,10 +3,20 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import istanbul from 'vite-plugin-istanbul';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
+  build: {
+    sourcemap: true,
+  },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -16,6 +26,14 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text'],
       all: true,
+      include: ['src/**/*'],
+      exclude: [
+        'src/**/*d.ts',
+        'src/**/*.test.*',
+        'src/**/**interface.ts',
+        'src/entry-client.tsx',
+        'src/entry-server.tsx',
+      ],
     },
   },
 });

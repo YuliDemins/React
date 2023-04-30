@@ -1,8 +1,9 @@
+import React from 'react';
 import { ChangeEvent, FC, useState, KeyboardEvent } from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
 import { setValueSearch } from '../../store/cardSlice';
 
-import styles from './search.module.css';
+import './search.css';
 
 export const Search: FC = () => {
   const dispatch = useAppDispatch();
@@ -24,19 +25,19 @@ export const Search: FC = () => {
   };
 
   return (
-    <div className={styles['form-search']}>
-      <label htmlFor="search" className={styles['label-search']}>
+    <div className={'form-search'}>
+      <label htmlFor="search" className={'label-search'}>
         <span className="material-symbols-outlined">search</span>
         <input
           type="text"
-          className={styles['input-search']}
+          className={'input-search'}
           id="search"
           onChange={(e) => handleChange(e)}
           value={query}
           onKeyPress={handleKeyPress}
         />
       </label>
-      <button className={styles['button-search']} onClick={handleClick}>
+      <button className={'button-search'} onClick={handleClick}>
         Search
       </button>
     </div>

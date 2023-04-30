@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { CatsModal } from './CatsModal';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
+import React from 'react';
 
 describe('CatModal', () => {
   test('render modal', async () => {

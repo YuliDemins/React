@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { Form } from './Form';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
+import React from 'react';
 
 describe('Home', () => {
   it('renders Form', () => {

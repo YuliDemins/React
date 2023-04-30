@@ -1,4 +1,4 @@
-.overlay {
+.catmodal-overlay {
   position: fixed;
   width: 100%;
   max-width: 100%;
@@ -12,7 +12,7 @@
   padding: 1rem;
 }
 
-.info {
+.catmodal-info {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -23,7 +23,7 @@
   padding: 1rem;
 }
 
-.modal {
+.catmodal-modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -41,35 +41,35 @@
   flex-direction: column;
 }
 
-.container {
+.catmodal-container {
   width: 100%;
   text-align: center;
   color: white;
   padding: 1rem;
 }
 
-.name {
+.catmodal-name {
   font-weight: 700;
   text-transform: uppercase;
   color: white;
   margin-bottom: 20px;
 }
 
-.origin,
-.description {
+.catmodal-origin,
+.catmodal-description {
   margin-bottom: 20px;
   color: white;
   font-weight: 400;
 }
 
-.temperament,
-.life {
+.catmodal-temperament,
+.catmodal-life {
   font-style: italic;
   margin-bottom: 20px;
   color: white;
 }
 
-.exit {
+.catmodal-exit {
   position: absolute;
   background: rgb(255, 134, 77);
   border-radius: 50%;

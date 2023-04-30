@@ -1,6 +1,7 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import styles from './nav.module.css';
+import './nav.css';
 
 interface ILink {
   id: number;
@@ -26,12 +27,12 @@ const links: ILink[] = [
   },
 ];
 
-const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? styles.active : styles.link);
+const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? 'active' : 'link');
 
 export const Nav = () => {
   return (
-    <nav className={styles.nav}>
-      <ul className={styles.list}>
+    <nav className={'nav'}>
+      <ul className={'list'}>
         {links.map(({ route, text, id }) => {
           return (
             <li key={id}>

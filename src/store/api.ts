@@ -3,7 +3,6 @@ import { CatBreed, CatImage, ICat } from '../types/api.interface';
 
 const baseURL = 'https://api.thecatapi.com/v1';
 const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
-// const URL = query ? `${baseURL}/search?q=${query}` : `${baseURL}?api_key=${key}`;
 
 export const api = createApi({
   reducerPath: 'api',

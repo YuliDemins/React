@@ -5,6 +5,7 @@ import { FormData } from './FormData';
 import { Countries } from '../../types/types';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
+import React from 'react';
 
 describe('FormData', () => {
   beforeAll(() => {
