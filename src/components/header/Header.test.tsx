@@ -3,6 +3,7 @@ import { describe, it } from 'vitest';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { Header } from './Header';
+import React from 'react';
 
 describe('Header', () => {
   it('Header test', () => {

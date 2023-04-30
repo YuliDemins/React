@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
 import { useGetBreedsQuery } from '../../store/api';
 import { updateState } from '../../store/cardSlice';

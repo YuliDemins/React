@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './Home';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
+import React from 'react';
 
 describe('Home', () => {
   test('renders Home route', async () => {

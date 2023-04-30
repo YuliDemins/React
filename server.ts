@@ -25,13 +25,11 @@ async function createServer() {
       const html = transformTemplate.split(`<!--no-rendered-->`);
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const { pipe } = await render(url, {
-        onShellReady() {
+        onAllReady() {
+          res.setHeader('Content-Type', 'text/html');
           res.write(html[0]);
           pipe(res);
-        },
-        onAllReady() {
-          res.write(html[0] + html[1]);
-          res.end();
+          res.end(html[1]);
         },
       });
     } catch (e) {

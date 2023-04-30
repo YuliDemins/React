@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChangeEvent, FC, useState, KeyboardEvent } from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
 import { setValueSearch } from '../../store/cardSlice';

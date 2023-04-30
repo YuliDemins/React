@@ -6,6 +6,7 @@ import { ImageCat } from '../imageCat/ImageCat';
 import { RootState } from '../../store/store';
 import { useTypedSelector, useAppDispatch } from '../../hooks/hooks';
 import { updateState } from '../../store/cardSlice';
+import React from 'react';
 
 export const CatsModal: FC = () => {
   const dispatch = useAppDispatch();

@@ -1,3 +1,4 @@
+import React from 'react';
 import { FC } from 'react';
 import { ImageCat } from '../imageCat/ImageCat';
 import './card.css';

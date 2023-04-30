@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { FormData } from '../../components/formData/FormData';
 import { Modal } from '../../components/modal/Modal';

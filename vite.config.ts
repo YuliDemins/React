@@ -7,10 +7,13 @@ import istanbul from 'vite-plugin-istanbul';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), istanbul({
-    cypress: true,
-    requireEnv: false,
-  }),],
+  plugins: [
+    react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
   build: {
     sourcemap: true,
   },

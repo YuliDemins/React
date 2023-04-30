@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { Search } from './Search';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
+import React from 'react';
 
 describe('search', () => {
   test('renders Search', () => {

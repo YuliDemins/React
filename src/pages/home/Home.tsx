@@ -4,6 +4,7 @@ import './home.css';
 import { useTypedSelector } from '../../hooks/hooks';
 import { RootState } from '../../store/store';
 import { Cards } from '../../components/Cards/Cards';
+import React from 'react';
 
 export const Home = () => {
   const visibleModal = useTypedSelector((state: RootState) => state.cardSlice.visibleModal);

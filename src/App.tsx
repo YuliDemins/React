@@ -6,6 +6,7 @@ import { Layout } from './components/layout/Layout';
 import { Form } from './pages/form/Form';
 
 import './App.css';
+import React from 'react';
 
 export const App = () => {
   return (

@@ -10,6 +10,7 @@ import { InputGender } from './InputGender';
 import { InputAgree } from './InputAgree';
 import { useAppDispatch } from '../../hooks/hooks';
 import { addValue, showModal } from '../../store/formListSlice';
+import React from 'react';
 
 export const FormData: FC = () => {
   const methods = useForm<IFormValues>();

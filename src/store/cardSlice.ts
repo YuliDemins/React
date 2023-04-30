@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface CardState {
+export interface CardState {
   idState: string;
   value: string;
   visibleModal: boolean;
@@ -12,7 +12,7 @@ const initialState: CardState = {
   visibleModal: false,
 };
 
-const cardSlice = createSlice({
+export const cardSlice = createSlice({
   name: 'cardSlice',
   initialState,
   reducers: {
