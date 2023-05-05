@@ -1,21 +1,26 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useState, KeyboardEvent } from 'react';
+import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
+import { setValueSearch } from '../../store/cardSlice';
 
 import styles from './search.module.css';
 
-type SearchProp = {
-  setQuery: (value: string) => void;
-};
-
-export const Search: FC<SearchProp> = ({ setQuery }) => {
-  const [value, setValue] = useState<string>(localStorage.getItem('search') || '');
+export const Search: FC = () => {
+  const dispatch = useAppDispatch();
+  const { value } = useTypedSelector((state) => state.cardSlice);
+  const [query, setQuery] = useState<string>(value);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setQuery(event.target.value);
   };
 
   const handleClick = () => {
-    setQuery(value);
-    localStorage.setItem('search', value);
+    dispatch(setValueSearch(query));
+  };
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      dispatch(setValueSearch(query));
+    }
   };
 
   return (
@@ -27,7 +32,8 @@ export const Search: FC<SearchProp> = ({ setQuery }) => {
           className={styles['input-search']}
           id="search"
           onChange={(e) => handleChange(e)}
-          value={value}
+          value={query}
+          onKeyPress={handleKeyPress}
         />
       </label>
       <button className={styles['button-search']} onClick={handleClick}>

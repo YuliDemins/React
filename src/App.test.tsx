@@ -1,12 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createBrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import { Layout } from './components/layout/Layout';
 import { About } from './pages/about/About';
 import { Form } from './pages/form/Form';
 import { Home } from './pages/home/Home';
 import { NotFound } from './pages/notFound/NotFound';
+import store from './store/store';
 
 describe('App', () => {
   it('renders Home page', () => {
@@ -34,12 +36,16 @@ describe('App', () => {
         ],
       },
     ]);
-    render(<App />);
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
     expect(screen.getByText(/cats/i)).toBeInTheDocument();
   });
 
   it('renders About page', () => {
-    const router = createBrowserRouter([
+    createBrowserRouter([
       {
         path: '/',
         element: <Layout />,
@@ -63,7 +69,11 @@ describe('App', () => {
         ],
       },
     ]);
-    render(<RouterProvider router={router} />);
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
     const aboutLink = screen.getByRole('link', { name: 'About' });
     userEvent.click(aboutLink);
     expect(screen.getByText('About')).toBeInTheDocument();

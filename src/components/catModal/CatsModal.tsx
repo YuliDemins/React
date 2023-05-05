@@ -1,54 +1,28 @@
-import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
-import { CatBreed, CatImage } from '../../types/api.interface';
-import axios from 'axios';
+import { FC, MouseEvent, useRef } from 'react';
 import styles from './catmodal.module.css';
 import { Preloader } from '../preloader/Preloader';
+import { useGetCardQuery } from '../../store/api';
+import { ImageCat } from '../imageCat/ImageCat';
+import { RootState } from '../../store/store';
+import { useTypedSelector, useAppDispatch } from '../../hooks/hooks';
+import { updateState } from '../../store/cardSlice';
 
-type CatModalProp = {
-  id: string;
-  setVisibleModal: (value: boolean) => void;
-};
+export const CatsModal: FC = () => {
+  const dispatch = useAppDispatch();
+  const { idState } = useTypedSelector((state: RootState) => state.cardSlice);
+  const { isLoading, data } = useGetCardQuery(idState);
 
-export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [breedImage, setBreedImage] = useState('');
+  const handleClick = () => {
+    dispatch(updateState({ idState: idState, visibleModal: false }));
+  };
 
-  const breedURL = `https://api.thecatapi.com/v1/breeds/${id}?api_key=`;
-  const imageURL = 'https://api.thecatapi.com/v1/images/search?breed_id=';
-  const key = 'live_17XhwfmLQSNM2KpZWSqhGwwknYeHIcrn8hIy1feWpXPuQngIucaoCbdM6i5NMr7r';
-
-  const handleClick = () => setVisibleModal(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleOverlayClick = (event: MouseEvent) => {
-    if (overlayRef.current == event.target) setVisibleModal(false);
+    if (overlayRef.current == event.target) {
+      dispatch(updateState({ idState: idState, visibleModal: false }));
+    }
   };
-
-  const [cat, setCat] = useState<CatBreed>();
-
-  useEffect(() => {
-    axios
-      .get<CatBreed>(`${breedURL}${key}`)
-      .then((res) => {
-        setCat(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  }, [breedURL]);
-
-  useEffect(() => {
-    axios
-      .get<CatImage[]>(`${imageURL}${id}&limit=1`)
-      .then((res) => {
-        if (!res.data.length) return;
-        else setBreedImage(res.data[0].url);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  }, [id]);
 
   return (
     <div className={styles.overlay} ref={overlayRef} onClick={handleOverlayClick}>
@@ -61,19 +35,13 @@ export const CatsModal: FC<CatModalProp> = ({ id, setVisibleModal }) => {
             <Preloader />
           ) : (
             <>
-              <div className={styles.image}>
-                {breedImage ? (
-                  <img src={breedImage} alt={cat?.name} />
-                ) : (
-                  <span className={styles.error}>картинка не найдена</span>
-                )}
-              </div>
+              <ImageCat id={idState} />
               <div className={styles.container}>
-                <div className={styles.name}>{cat?.name}</div>
-                <div className={styles.description}>{cat?.description}</div>
-                <div className={styles.origin}>{cat?.origin}</div>
-                <div className={styles.temperament}>{cat?.temperament}</div>
-                <div className={styles.life}>{cat?.life_span} average life span</div>
+                <div className={styles.name}>{data?.name}</div>
+                <div className={styles.description}>{data?.description}</div>
+                <div className={styles.origin}>{data?.origin}</div>
+                <div className={styles.temperament}>{data?.temperament}</div>
+                <div className={styles.life}>{data?.life_span} average life span</div>
               </div>
             </>
           )}

@@ -1,14 +1,12 @@
 import { FC } from 'react';
-import { IFormData } from '../../types/types';
+import { useTypedSelector } from '../../hooks/hooks';
+import { RootState } from '../../store/store';
 import { FormValue } from '../formValue/FormValue';
 
 import styles from './valuelist.module.css';
 
-type ListProps = {
-  list: IFormData[];
-};
-
-export const ValueList: FC<ListProps> = ({ list }) => {
+export const ValueList: FC = () => {
+  const { list } = useTypedSelector((state: RootState) => state.formList);
   return (
     <ul className={styles.valuelist}>
       {list.map((value, index) => (

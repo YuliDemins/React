@@ -1,32 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FormData } from '../../components/formData/FormData';
 import { Modal } from '../../components/modal/Modal';
 import { ValueList } from '../../components/valueList/ValueList';
-import { IFormData } from '../../types/types';
+import { useAppDispatch, useTypedSelector } from '../../hooks/hooks';
+import { showModal } from '../../store/formListSlice';
+import { RootState } from '../../store/store';
 
 export const Form = () => {
-  const [card, setCard] = useState<IFormData[]>([]);
-  const [showModal, setShowModal] = useState(false);
-
-  const showCardsValues = (values: IFormData) => {
-    setCard((prev) => [...prev, values]);
-  };
+  const dispatch = useAppDispatch();
+  const { isShowModal } = useTypedSelector((state: RootState) => state.formList);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      setShowModal(false);
-    }, 3000);
+      if (isShowModal) {
+        dispatch(showModal(false));
+      }
+    }, 2000);
     return () => {
       clearTimeout(timerId);
     };
-  }, [showModal]);
+  }, [dispatch, isShowModal]);
 
   return (
     <>
       <h1 className="main-title">Form</h1>
-      <FormData showCardsValues={showCardsValues} showModal={setShowModal} />
-      {showModal && <Modal />}
-      <ValueList list={card} />
+      <FormData />
+      {isShowModal && <Modal />}
+      <ValueList />
     </>
   );
 };

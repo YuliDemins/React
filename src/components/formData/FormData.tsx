@@ -8,20 +8,19 @@ import { InputBirthday } from './InputBirthday';
 import { InputFile } from './InputFile';
 import { InputGender } from './InputGender';
 import { InputAgree } from './InputAgree';
+import { useAppDispatch } from '../../hooks/hooks';
+import { addValue, showModal } from '../../store/formListSlice';
 
-type DataProps = {
-  showCardsValues: (data: IFormData) => void;
-  showModal: (value: boolean) => void;
-};
-
-export const FormData: FC<DataProps> = ({ showCardsValues, showModal }) => {
+export const FormData: FC = () => {
   const methods = useForm<IFormValues>();
   const { reset } = methods;
 
-  const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
-    showModal(true);
+  const dispatch = useAppDispatch();
 
-    const cardValues = {
+  const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
+    dispatch(showModal(true));
+
+    const cardValues: IFormData = {
       id: data.name,
       name: data.name,
       country: data.country,
@@ -30,8 +29,7 @@ export const FormData: FC<DataProps> = ({ showCardsValues, showModal }) => {
       gender: data.gender,
       agree: data.agree,
     };
-
-    showCardsValues(cardValues);
+    dispatch(addValue(cardValues));
     reset();
   };
 

@@ -16,7 +16,7 @@ export interface ICat {
   origin?: string;
   description?: string;
   temperament: string;
-  image?: CatImage;
+  image: CatImage;
   life_span?: string;
   weight?: CatWeight;
   wikipedia_url?: string;
@@ -39,7 +39,7 @@ export interface ICat {
   lap?: number;
   natural?: number;
   rare?: number;
-  reference_image_id: string;
+  reference_image_id?: string;
   rex?: number;
   shedding_level?: number;
   short_legs?: number;

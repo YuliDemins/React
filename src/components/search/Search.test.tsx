@@ -1,12 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test, vi } from 'vitest';
+import { describe, test } from 'vitest';
 import '@testing-library/jest-dom';
 import { Search } from './Search';
+import { Provider } from 'react-redux';
+import store from '../../store/store';
 
 describe('search', () => {
-  const setQuery = vi.fn();
   test('renders Search', () => {
-    render(<Search setQuery={setQuery} />);
+    render(
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    );
     const input = screen.getByRole<HTMLInputElement>('textbox');
     const button = screen.getByLabelText<HTMLButtonElement>('search');
     expect(input).toBeInTheDocument();
