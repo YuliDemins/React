@@ -1,0 +1,23 @@
+.value {
+  display: flex;
+  flex-direction: column;
+  margin: 1.2rem;
+  border-radius: 4px;
+  background: rgb(252, 252, 252);
+  border: 1px solid rgba(179, 179, 181, 0.35);
+  min-height: 300px;
+}
+
+.value-item {
+  padding: 0.2rem 0.8rem;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  aspect-ratio: 1.5/1;
+  border-radius: 4px 4px 0px 0px;
+}

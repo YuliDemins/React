@@ -1,0 +1,41 @@
+.image > img {
+  display: block;
+  width: 100%;
+  object-position: top;
+  object-fit: cover;
+  aspect-ratio: 1.5/1;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.info {
+  margin: 0.6rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wrapper {
+  flex: 1 0 auto;
+  margin-bottom: 0.7rem;
+}
+
+.name {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: rgb(249, 148, 2);
+}
+
+.temperament {
+  font-size: 14px;
+  color: rgb(25, 42, 54);
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1.5/1;
+}

@@ -1,13 +1,36 @@
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import './App.css';
+import { About } from './pages/about/About';
+import { Home } from './pages/home/Home';
+import { NotFound } from './pages/notFound/NotFound';
+import { Layout } from './components/layout/Layout';
+import { Form } from './pages/form/Form';
 
-import './App.css'
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'form',
+        element: <Form />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
 
-function App() {
-
-  return (
-    <div className="App">
-      Hello
-    </div>
-  )
-}
-
-export default App
+export const App = () => {
+  return <RouterProvider router={router} />;
+};
